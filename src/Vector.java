@@ -19,7 +19,7 @@ public class Vector {
     //Вывод в строку:
     @Override
     public String toString(){
-        return String.format("Vector (%.4d; %.4d)", this.getX(), this.getY());
+        return String.format("Vector (%.4f; %.4f)", this.getX(), this.getY());
     }
 
 
@@ -66,6 +66,13 @@ public class Vector {
         Vector vectorNew = new Vector(xNew, yNew);
         return vectorNew;
     }
+
+    public void addToThis(Vector a){ //Сложение двух векторов
+        double xNew = this.getX()+a.getX();
+        double yNew = this.getY()+a.getY();
+        this.x = xNew;
+        this.y = yNew;
+    }
     public double projectOn(Vector a){ //Проекция вектора this на данный вектор a
         double alpha = Math.abs(this.getTheta()-a.getTheta()); //Угол между векторами
         double projection = this.getR()*Math.cos(alpha);
@@ -81,5 +88,45 @@ public class Vector {
     public Vector getTangent(Vector a){ //Получение составляющей вектора this, тангенциальной к вектору a
         Vector result = this.add(this.getNormal(a).x(-1)); //Находим нормальную составляющую и вычитаем её из вектора this
         return result;
+    }
+}
+
+class Force extends Vector{
+    int time; //Время действия силы, с каждым обновлением Creature, которому она приложена, уменьшается на 1
+    //Если time = -1, то сила действует условно вечно
+
+
+    //Конструкторы
+    public Force(double x, double y, int time){ //Простой конструктор,на входе координаты (x, y) и время действия силы time
+        super(x, y);
+        this.time = time;
+    }
+
+    public Force(double r, double theta, int time, boolean ignored){ //Конструктор, на входе координаты (r, θ), время действия силы time и булевская переменная
+        //(нужна, чтобы отличить от обычного конструктора, значение не важно)
+        super(r, theta);
+        this.time = time;
+    }
+
+
+    //Геттеры:
+    public int getTime() {
+        return time;
+    }
+
+
+    //Сеттеры:
+    public void setTime(int time){
+        this.time = time;
+    }
+
+    public void decreaseTime(){ //Уменьшает время на 1
+        this.time--;
+    }
+
+
+    @Override
+    public String toString(){
+        return String.format("Force (%.4f; %.4f), will last for %d", this.getX(), this.getY(), this.getTime());
     }
 }
