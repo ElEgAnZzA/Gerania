@@ -1,6 +1,6 @@
 public class Creature {
-    int x; //Координаты (x, y)
-    int y;
+    private double x; //Координаты (x, y)
+    private double y;
     int width; //Ширина и высота
     int height;
 
@@ -13,7 +13,15 @@ public class Creature {
 
     String sprite; //Спрайт Creature, пока не используется
 
-    public Creature(int x, int y, int width, int height){
+    public Creature(){
+        this.x=0;
+        this.y=0;
+        this.width=1;
+        this.height=1;
+        this.mass = 1;
+    }
+
+    public Creature(double x, double y, int width, int height){
         this.x=x;
         this.y=y;
         this.width=width;
@@ -21,7 +29,7 @@ public class Creature {
         this.mass = 1;
     }
 
-    public Creature(int x, int y, int width, int height, int mass){
+    public Creature(double x, double y, int width, int height, int mass){
         this.x=x;
         this.y=y;
         this.width=width;
@@ -31,11 +39,11 @@ public class Creature {
 
 
     //Геттеры:
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -116,6 +124,13 @@ public class Creature {
             forces[kForces]=force;
             kForces++;
         }
+    }
+
+    public Point[] getBounds(){ //Выдает массив из двух точек: [(x, y), (x+width, y+height)] - граници объекта
+        Point[] a = new Point[2];
+        a[0] = new Point(this.getX(), this.getY());
+        a[1] = new Point(this.getX()+this.getWidth(), this.getY()+this.getHeight());
+        return a;
     }
 
 }

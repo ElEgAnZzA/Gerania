@@ -14,6 +14,14 @@ public class Vector {
         this.x = r * Math.cos(theta);
         this.y = r * Math.sin(theta);
     }
+    public Vector(Point a){
+        this.x = a.getX();
+        this.y = a.getY();
+    }
+    public Vector(Point a, Point b){
+        this.x = a.getX()-b.getX();
+        this.y = a.getY()-b.getY();
+    }
 
 
     //Вывод в строку:
