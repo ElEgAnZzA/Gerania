@@ -1,6 +1,8 @@
 public class Creature {
     private double x; //Координаты (x, y)
     private double y;
+    private double lastX;
+    private double lastY;
     int width; //Ширина и высота
     int height;
 
@@ -47,6 +49,14 @@ public class Creature {
         return y;
     }
 
+    public double getLastX() {
+        return lastX;
+    }
+
+    public double getLastY() {
+        return lastY;
+    }
+
     public int getWidth() {
         return width;
     }
@@ -71,6 +81,14 @@ public class Creature {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public void setLastX(double lastX) {
+        this.lastX = lastX;
+    }
+
+    public void setLastY(double lastY) {
+        this.lastY = lastY;
     }
 
     public void setWidth(int width) {
@@ -115,6 +133,8 @@ public class Creature {
                 forcesPop(i);
 
         }
+        lastX = x;
+        lastY = y;
         x += velocity.getX();
         y += velocity.getY();
     }
@@ -132,5 +152,42 @@ public class Creature {
         a[1] = new Point(this.getX()+this.getWidth(), this.getY()+this.getHeight());
         return a;
     }
+    private boolean checkCollision(GameObject[] gameObjects, int i){
+        boolean res = false;
+        double selectedX = gameObjects[i].getX();
+        double selectedY = gameObjects[i].getY();
+        int selectedWidth = gameObjects[i].getWidth();
+        int selectedHeight = gameObjects[i].getHeight();
+        if ((selectedX+selectedWidth>=this.x)&& //Условие первое: левая часть объекта левее, чем правая часть данного существа
+                (selectedX<=this.x+this.width)&& //Условие второе: правая часть объекта правее, чем левая часть данного существа
+                (selectedY+selectedHeight>=this.y)&& //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
+                (selectedY<=this.y+this.height)){ //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
+            res = true;
+        }
+        return res;
+    }
 
+    private void detectCollisions(GameObject[] gameObjects){
+        boolean finished = false;
+        int[] collisions = new int[1000]; //Список всех номеров существ, с которыми происходит столкновение
+        int kCollisions = 0;
+        for (int i = 0; i<gameObjects.length&&finished == false; i++){
+            if (gameObjects[i]!=null){
+                if (checkCollision(gameObjects, i))
+                    collisions[kCollisions] = i;
+            }
+            else
+                finished = true;
+        }
+        for (int i=0; i<kCollisions; i++){
+            resolveCollisions(collisions[i]);
+        }
+    }
+    private void resolveCollisions(int collision){
+        Vector partialVelocity = this.velocity.x(1/4);
+
+        for (int i = 0; i<4; i++){
+
+        }
+    }
 }

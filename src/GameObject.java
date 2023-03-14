@@ -1,17 +1,17 @@
-public class Object {
+public class GameObject {
     private double x; //Координаты (x, y)
     private double y;
     int width; //Ширина и высота
     int height;
 
 
-    public Object(){
+    public GameObject(){
         this.x=0;
         this.y=0;
         this.width=1;
         this.height=1;
     }
-    public Object(double x, double y, int width, int height){
+    public GameObject(double x, double y, int width, int height){
         this.x=x;
         this.y=y;
         this.width=width;
@@ -74,10 +74,13 @@ public class Object {
             }
             else
                 finished = true;
+            for (int i==0; i<kCollisions; i++){
+                resolveCollision(collisions[i]);
+            }
         }
     }
-    public void resolveCollision(Creature creature, Object object){
-        Point objectCenter = new Point(object.getX() + object.getWidth()/2, object.getY() + object.getHeight()/2);
-        Point creatureCenter = new Point(creature.getX() + creature.getWidth()/2, creature.getY() + object.getHeight()/2);
+    public void resolveCollision(Creature creature, GameObject gameObject){
+        Point objectCenter = new Point(gameObject.getX() + gameObject.getWidth()/2, gameObject.getY() + gameObject.getHeight()/2);
+        Point creatureCenter = new Point(creature.getX() + creature.getWidth()/2, creature.getY() + gameObject.getHeight()/2);
     }
 }

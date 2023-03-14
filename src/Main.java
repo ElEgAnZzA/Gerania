@@ -1,6 +1,6 @@
 public class Main {
-    Creature[] creatures = new Creature[1000];
-    Object[] objects = new Object[1000];
+    public Creature[] creatures = new Creature[1000];
+    public GameObject[] gameObjects = new GameObject[1000];
     public static void main(String[] args) {
         Creature creature = new Creature(0, 0, 1, 1, 1);
         creature.setVelocity(new Vector(2, 15));
