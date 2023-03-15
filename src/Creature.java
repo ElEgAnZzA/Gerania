@@ -75,11 +75,11 @@ public class Creature {
 
 
     //Сеттеры:
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -121,7 +121,7 @@ public class Creature {
 
 
     //Взаимодействие с Creature:
-    public void update(){ //Обновляет состояние Creature:
+    public void update(GameObject[] gameObjects){ //Обновляет состояние Creature:
         //1. Прикладывает все Force из forces к Velocity
         //2. Обновляет все Force из forces, удаляя те, time которых меньше 1 и больше -1
         //2. Меняет координаты (x, y) Creature в соответствии с velocity
@@ -133,10 +133,11 @@ public class Creature {
                 forcesPop(i);
 
         }
-        lastX = x;
-        lastY = y;
-        x += velocity.getX();
-        y += velocity.getY();
+        lastX = this.getX();
+        lastY = this.getY();
+        this.velocity = detectCollisions(gameObjects);
+        x += this.velocity.getX();
+        y += this.velocity.getY();
     }
     public void applyForce(Force force){ //Добавляет новую Force в forces.
         // Если forces (т.е. там 50 элементов <=> kForces = 50) заполнен, то ничего не делает
@@ -164,30 +165,57 @@ public class Creature {
                 (selectedY<=this.y+this.height)){ //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
             res = true;
         }
+//        System.out.println("Checking collision with Gameobject "+i+"; result: "+res);
         return res;
     }
 
-    private void detectCollisions(GameObject[] gameObjects){
+    public Vector detectCollisions(GameObject[] gameObjects){
         boolean finished = false;
         int[] collisions = new int[1000]; //Список всех номеров существ, с которыми происходит столкновение
         int kCollisions = 0;
         for (int i = 0; i<gameObjects.length&&finished == false; i++){
             if (gameObjects[i]!=null){
-                if (checkCollision(gameObjects, i))
+                if (checkCollision(gameObjects, i)) {
                     collisions[kCollisions] = i;
+                    kCollisions++;
+                }
             }
             else
                 finished = true;
         }
+        System.out.println(collisions[0]);
+        Vector finalVelocity = new Vector(this.getVelocity().getX(), this.getVelocity().getY());
+        Vector j;
         for (int i=0; i<kCollisions; i++){
-            resolveCollisions(collisions[i]);
+            j = resolveCollisions(gameObjects, collisions[i]);
+            if(j.getX()< finalVelocity.getX())
+                finalVelocity.setX(j.getX());
+            if(j.getY()< finalVelocity.getY())
+                finalVelocity.setY(j.getY());
         }
+        return finalVelocity;
     }
-    private void resolveCollisions(int collision){
-        Vector partialVelocity = this.velocity.x(1/4);
-
+    private Vector resolveCollisions(GameObject[] gameObjects, int collision){
+        Vector partialVelocity = this.getVelocity().x(1/4);
+        Vector resVelocity = new Vector(0,0);
         for (int i = 0; i<4; i++){
-
+            this.setX(this.getX()+partialVelocity.getX());
+            this.setY(this.getY()+partialVelocity.getY());
+            resVelocity.addToThis(partialVelocity);
+            if(checkCollision(gameObjects, collision)){
+                this.setY(this.getY()-partialVelocity.getY());
+                resVelocity.setY(resVelocity.getY()-partialVelocity.getY());
+                if(checkCollision(gameObjects, collision)){
+                    this.setX(this.getX()-partialVelocity.getX());
+                    resVelocity.setX(resVelocity.getX()-partialVelocity.getX());
+                    break;
+                }
+            }
         }
+        return resVelocity;
+    }
+    @Override
+    public String toString(){
+        return "Creature at:"+this.getX()+" "+this.getY()+"; Width:"+this.getWidth()+"; Height:"+this.getHeight();
     }
 }
