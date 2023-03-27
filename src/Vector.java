@@ -22,6 +22,10 @@ public class Vector {
         this.x = a.getX()-b.getX();
         this.y = a.getY()-b.getY();
     }
+    public Vector(Vector a){
+        this.x = a.getX();
+        this.y = a.getY();
+    }
 
 
     //Вывод в строку:
@@ -37,6 +41,11 @@ public class Vector {
     }
     public void setY(double y) { //Установка значения y
         this.y = y;
+    }
+    public void setR(double r){
+        double rMult = r/this.getR();
+        this.setX(this.getX()*rMult);
+        this.setY(this.getY()*rMult);
     }
 
 
@@ -81,6 +90,20 @@ public class Vector {
         this.x = xNew;
         this.y = yNew;
     }
+
+    public Vector subtract(Vector a){
+        double xNew = this.getX()-a.getX();
+        double yNew = this.getY()-a.getY();
+        Vector vectorNew = new Vector(xNew, yNew);
+        return vectorNew;
+    }
+    public void subtractFromThis(Vector a){
+        double xNew = this.getX()-a.getX();
+        double yNew = this.getY()-a.getY();
+        this.x = xNew;
+        this.y = yNew;
+    }
+
     public double projectOn(Vector a){ //Проекция вектора this на данный вектор a
         double alpha = Math.abs(this.getTheta()-a.getTheta()); //Угол между векторами
         double projection = this.getR()*Math.cos(alpha);
@@ -94,7 +117,7 @@ public class Vector {
         return result;
     }
     public Vector getTangent(Vector a){ //Получение составляющей вектора this, тангенциальной к вектору a
-        Vector result = this.add(this.getNormal(a).x(-1)); //Находим нормальную составляющую и вычитаем её из вектора this
+        Vector result = this.subtract(this.getNormal(a)); //Находим нормальную составляющую и вычитаем её из вектора this
         return result;
     }
 }

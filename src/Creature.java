@@ -1,9 +1,11 @@
 public class Creature {
-    private double x; //Координаты (x, y)
-    private double y;
+
+    //Координаты (x, y):
+    private double x; // x - слева направо
+    private double y; //y - сверху вниз
     private double lastX;
     private double lastY;
-    int width; //Ширина и высота
+    int width; //Ширина и высота, направлены на увеличение соответствующих осей
     int height;
 
     int mass; //Масса, влияет изменение velocity под действием Force
@@ -13,6 +15,9 @@ public class Creature {
     // Число 50 слишком большое, чтобы быть (продуктивно) занятым и слишком маленькое (надеюсь), чтобы перегрузить компьютер
     int kForces = 0; //Число элементов в списке forces
 
+    private MovementPattern movementPattern;
+    private boolean isControlled = false;
+
     String sprite; //Спрайт Creature, пока не используется
 
     public Creature(){
@@ -21,6 +26,9 @@ public class Creature {
         this.width=1;
         this.height=1;
         this.mass = 1;
+        Vector[] noAction = new Vector[1];
+        noAction[0] = new Vector(0,0);
+        this.movementPattern = new MPSequence(noAction);
     }
 
     public Creature(double x, double y, int width, int height){
@@ -29,6 +37,9 @@ public class Creature {
         this.width=width;
         this.height=height;
         this.mass = 1;
+        Vector[] noAction = new Vector[1];
+        noAction[0] = new Vector(0,0);
+        this.movementPattern = new MPSequence(noAction);
     }
 
     public Creature(double x, double y, int width, int height, int mass){
@@ -37,6 +48,27 @@ public class Creature {
         this.width=width;
         this.height=height;
         this.mass = mass;
+        Vector[] noAction = new Vector[1];
+        noAction[0] = new Vector(0,0);
+        this.movementPattern = new MPSequence(noAction);
+    }
+
+    public Creature(double x, double y, int width, int height, MovementPattern movementPattern){
+        this.x=x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+        this.mass = 1;
+        this.movementPattern = movementPattern;
+    }
+
+    public Creature(double x, double y, int width, int height, int mass, MovementPattern movementPattern){
+        this.x=x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+        this.mass = mass;
+        this.movementPattern = movementPattern;
     }
 
 
@@ -73,6 +105,13 @@ public class Creature {
         return velocity;
     }
 
+    public MovementPattern getMovementPattern() {
+        return movementPattern;
+    }
+
+    public boolean getIsControlled() {
+        return isControlled;
+    }
 
     //Сеттеры:
     public void setX(double x) {
@@ -107,6 +146,13 @@ public class Creature {
         this.velocity = velocity;
     }
 
+    public void setMovementPattern(MovementPattern movementPattern) {
+        this.movementPattern = movementPattern;
+    }
+
+    public void setIsControlled(boolean isControlled) {
+        this.isControlled = isControlled;
+    }
 
     //Внутренние функции:
     private void forcesPop(int num){ //Убирает элемент с индексом num из forces, сдвигает остаток массива влево, чтобы не было пропусков
@@ -122,17 +168,24 @@ public class Creature {
 
     //Взаимодействие с Creature:
     public void update(GameObject[] gameObjects){ //Обновляет состояние Creature:
-        //1. Прикладывает все Force из forces к Velocity
-        //2. Обновляет все Force из forces, удаляя те, time которых меньше 1 и больше -1
-        //2. Меняет координаты (x, y) Creature в соответствии с velocity
+        //1. Прикладывает силы перемещения от паттерна поведения
+        //2. Прикладывает все Force из forces к Velocity
+        //3. Обновляет все Force из forces, удаляя те, time которых меньше 1 и больше -1, а также удаляя и создавая моментные (time = 0) противовесы силам, у которых time = -2
+        //4. Меняет координаты (x, y) Creature в соответствии с velocity
+
+        if(!isControlled&&movementPattern!=null){
+            this.move(movementPattern.getNextAction(this.x, this.y, this.width, this.height));
+        }
         for (int i = 0; i<kForces; i++){
             velocity.addToThis(forces[i].x(1/mass));
             if (forces[i].getTime()>1)
                 forces[i].decreaseTime();
             else if (forces[i].getTime()>-1)
                 forcesPop(i);
-
         }
+        if (velocity.getR()>=Main.CREATURE_MAX_VELOCITY)
+            velocity.setR(Main.CREATURE_MAX_VELOCITY);
+
         lastX = this.getX();
         lastY = this.getY();
         this.velocity = detectCollisions(gameObjects);
@@ -153,23 +206,23 @@ public class Creature {
         a[1] = new Point(this.getX()+this.getWidth(), this.getY()+this.getHeight());
         return a;
     }
-    private boolean checkCollision(GameObject[] gameObjects, int i){
+    public boolean checkCollision(GameObject[] gameObjects, int i){
         boolean res = false;
         double selectedX = gameObjects[i].getX();
         double selectedY = gameObjects[i].getY();
         int selectedWidth = gameObjects[i].getWidth();
         int selectedHeight = gameObjects[i].getHeight();
-        if ((selectedX+selectedWidth>=this.x)&& //Условие первое: левая часть объекта левее, чем правая часть данного существа
-                (selectedX<=this.x+this.width)&& //Условие второе: правая часть объекта правее, чем левая часть данного существа
-                (selectedY+selectedHeight>=this.y)&& //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
-                (selectedY<=this.y+this.height)){ //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
+        if ((selectedX+selectedWidth>this.x)&& //Условие первое: левая часть объекта левее, чем правая часть данного существа
+                (selectedX<this.x+this.width)&& //Условие второе: правая часть объекта правее, чем левая часть данного существа
+                (selectedY+selectedHeight>this.y)&& //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
+                (selectedY<this.y+this.height)){ //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
             res = true;
         }
 //        System.out.println("Checking collision with Gameobject "+i+"; result: "+res);
         return res;
     }
 
-    public Vector detectCollisions(GameObject[] gameObjects){
+    private Vector detectCollisions(GameObject[] gameObjects){
         boolean finished = false;
         int[] collisions = new int[1000]; //Список всех номеров существ, с которыми происходит столкновение
         int kCollisions = 0;
@@ -183,37 +236,49 @@ public class Creature {
             else
                 finished = true;
         }
-        System.out.println(collisions[0]);
         Vector finalVelocity = new Vector(this.getVelocity().getX(), this.getVelocity().getY());
         Vector j;
         for (int i=0; i<kCollisions; i++){
             j = resolveCollisions(gameObjects, collisions[i]);
-            if(j.getX()< finalVelocity.getX())
+            if(Math.abs(j.getX())< Math.abs(finalVelocity.getX()))
                 finalVelocity.setX(j.getX());
-            if(j.getY()< finalVelocity.getY())
+            if(Math.abs(j.getY())< Math.abs(finalVelocity.getY()))
                 finalVelocity.setY(j.getY());
         }
         return finalVelocity;
     }
     private Vector resolveCollisions(GameObject[] gameObjects, int collision){
-        Vector partialVelocity = this.getVelocity().x(1/4);
+        double beginningX = this.getX();
+        double beginningY = this.getY();
+        Vector partialVelocity = this.getVelocity().x(1/5);
         Vector resVelocity = new Vector(0,0);
-        for (int i = 0; i<4; i++){
+        for (int i = 0; i<5; i++){
             this.setX(this.getX()+partialVelocity.getX());
+            resVelocity.setX(resVelocity.getX()+partialVelocity.getX());
+            if(checkCollision(gameObjects, collision)){
+                this.setX(this.getX()-partialVelocity.getX());
+                resVelocity.setX(resVelocity.getX()-partialVelocity.getX());
+                break;
+            }
+        }
+        this.setX(beginningX);
+        for (int i = 0; i<5; i++){
             this.setY(this.getY()+partialVelocity.getY());
-            resVelocity.addToThis(partialVelocity);
+            resVelocity.setY(resVelocity.getY()+partialVelocity.getY());
             if(checkCollision(gameObjects, collision)){
                 this.setY(this.getY()-partialVelocity.getY());
                 resVelocity.setY(resVelocity.getY()-partialVelocity.getY());
-                if(checkCollision(gameObjects, collision)){
-                    this.setX(this.getX()-partialVelocity.getX());
-                    resVelocity.setX(resVelocity.getX()-partialVelocity.getX());
-                    break;
-                }
+                break;
             }
         }
+        this.setY(beginningY);
         return resVelocity;
     }
+
+    public void move(Vector direction){
+        this.applyForce(new Force(direction.getX(), direction.getY(), 0));
+    }
+
     @Override
     public String toString(){
         return "Creature at:"+this.getX()+" "+this.getY()+"; Width:"+this.getWidth()+"; Height:"+this.getHeight();
