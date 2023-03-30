@@ -2,6 +2,7 @@
 //TODO: 2. Make a spell system
 //TODO: 3. Исправить конструктор MPTarget (просит не список существ и id, а ссылку на существо) - спросить у ДМ
 //TODO: 4. Front-end
+//Остановился на прыжке. Проблема: как определить, когда прыжок возможен? Решение: см. голосовое сообщение в телеге в монологе
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -28,6 +29,7 @@ public class Main extends JFrame{
     //Системные (?) константы:
     public static int PLAYER_CREATURE_MOVE_LEFT = 37; //Код стрелки влево на клавиатуре
     public static int PLAYER_CREATURE_MOVE_RIGHT = 39; //Код стрелки вправо на клавиатуре
+    public static int PLAYER_CREATURE_JUMP = 32; //Код пробела
 
 
     public Main(String title){
@@ -50,12 +52,11 @@ public class Main extends JFrame{
         while (true){
             panel.repaint();
             try {
-                TimeUnit.MILLISECONDS.sleep(300);
+                TimeUnit.MILLISECONDS.sleep(100);
             }
             catch (java.lang.InterruptedException e){
                 e.printStackTrace();
             }
-            System.out.println(creatures[0].checkCollision(gameObjects, 0));
         }
     }
     public static void main(String[] args) {
@@ -92,10 +93,11 @@ public class Main extends JFrame{
                 int keyCode = e.getKeyCode();
                 if(keyCode == PLAYER_CREATURE_MOVE_LEFT) {
                     creatures[playerControlledCreatureId].move(new Vector(-1, 0));
-                    System.out.println("LEFT");
                 }
                 else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
+                else if (keyCode == PLAYER_CREATURE_JUMP)
+                    creatures[playerControlledCreatureId].move(new Vector(0, -4));
             }
         }
 

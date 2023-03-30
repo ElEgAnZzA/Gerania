@@ -182,13 +182,13 @@ public class Creature {
                 forces[i].decreaseTime();
             else if (forces[i].getTime()>-1)
                 forcesPop(i);
+            if (velocity.getR()>=Main.CREATURE_MAX_VELOCITY)
+                velocity.setR(Main.CREATURE_MAX_VELOCITY);
+            this.velocity = detectCollisions(gameObjects);
         }
-        if (velocity.getR()>=Main.CREATURE_MAX_VELOCITY)
-            velocity.setR(Main.CREATURE_MAX_VELOCITY);
 
         lastX = this.getX();
         lastY = this.getY();
-        this.velocity = detectCollisions(gameObjects);
         x += this.velocity.getX();
         y += this.velocity.getY();
     }
@@ -206,19 +206,34 @@ public class Creature {
         a[1] = new Point(this.getX()+this.getWidth(), this.getY()+this.getHeight());
         return a;
     }
-    public boolean checkCollision(GameObject[] gameObjects, int i){
+    private boolean checkCollision(GameObject[] gameObjects, int i) {
         boolean res = false;
         double selectedX = gameObjects[i].getX();
         double selectedY = gameObjects[i].getY();
         int selectedWidth = gameObjects[i].getWidth();
         int selectedHeight = gameObjects[i].getHeight();
-        if ((selectedX+selectedWidth>this.x)&& //Условие первое: левая часть объекта левее, чем правая часть данного существа
-                (selectedX<this.x+this.width)&& //Условие второе: правая часть объекта правее, чем левая часть данного существа
-                (selectedY+selectedHeight>this.y)&& //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
-                (selectedY<this.y+this.height)){ //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
+        if ((selectedX + selectedWidth > this.x) && //Условие первое: левая часть объекта левее, чем правая часть данного существа
+                (selectedX < this.x + this.width) && //Условие второе: правая часть объекта правее, чем левая часть данного существа
+                (selectedY + selectedHeight > this.y) && //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
+                (selectedY < this.y + this.height)) { //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
             res = true;
         }
 //        System.out.println("Checking collision with Gameobject "+i+"; result: "+res);
+        return res;
+    }
+    private int checkCollisionType(GameObject[] gameObjects, int i){ //Возвращает тип столкновения: 1 - горизонтальное, 2 - вертикальное, 3 - идеальное угловое
+        int res;
+        GameObject gameObject = gameObjects[i];
+        Point objectCenter = new Point(gameObject.getX()+gameObject.getWidth()/2, gameObject.getY()+gameObject.getHeight()/2);
+        Point center = new Point(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2);
+        Vector collisionDirection = new Vector(objectCenter.getX()-center.getX(), objectCenter.getY()- center.getY());
+        collisionDirection.setX(this.getHeight()/(2*Math.tan(collisionDirection.getTheta())));
+        if (Math.abs(collisionDirection.getX())<this.width/2)
+            res = 2;
+        else if (Math.abs(collisionDirection.getX())>this.width/2)
+            res = 1;
+        else
+            res = 3;
         return res;
     }
 
@@ -226,6 +241,8 @@ public class Creature {
         boolean finished = false;
         int[] collisions = new int[1000]; //Список всех номеров существ, с которыми происходит столкновение
         int kCollisions = 0;
+        this.setX(this.getX()+this.velocity.getX());
+        this.setY(this.getY()+this.velocity.getY());
         for (int i = 0; i<gameObjects.length&&finished == false; i++){
             if (gameObjects[i]!=null){
                 if (checkCollision(gameObjects, i)) {
@@ -236,6 +253,8 @@ public class Creature {
             else
                 finished = true;
         }
+        this.setX(this.getX()-this.velocity.getX());
+        this.setY(this.getY()-this.velocity.getY());
         Vector finalVelocity = new Vector(this.getVelocity().getX(), this.getVelocity().getY());
         Vector j;
         for (int i=0; i<kCollisions; i++){
