@@ -1,8 +1,7 @@
 //TODO: 1. Finish and polish up MovementPattern
 //TODO: 2. Make a spell system
 //TODO: 3. Исправить конструктор MPTarget (просит не список существ и id, а ссылку на существо) - спросить у ДМ
-//TODO: 4. Front-end
-//Остановился на прыжке. Проблема: как определить, когда прыжок возможен? Решение: см. голосовое сообщение в телеге в монологе
+//TODO: 4. Front-end design
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -57,6 +56,7 @@ public class Main extends JFrame{
             catch (java.lang.InterruptedException e){
                 e.printStackTrace();
             }
+//            System.out.println(creatures[0]+" "+creatures[0].checkCollision(gameObjects, 0));
         }
     }
     public static void main(String[] args) {
@@ -96,7 +96,7 @@ public class Main extends JFrame{
                 }
                 else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
-                else if (keyCode == PLAYER_CREATURE_JUMP)
+                else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision())
                     creatures[playerControlledCreatureId].move(new Vector(0, -4));
             }
         }
