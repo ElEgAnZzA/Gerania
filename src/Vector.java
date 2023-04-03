@@ -19,8 +19,8 @@ public class Vector {
         this.y = a.getY();
     }
     public Vector(Point a, Point b){
-        this.x = a.getX()-b.getX();
-        this.y = a.getY()-b.getY();
+        this.x = b.getX()-a.getX();
+        this.y = b.getY()-a.getY();
     }
     public Vector(Vector a){
         this.x = a.getX();
@@ -59,6 +59,10 @@ public class Vector {
     public double getR() { //Получение модуля вектора
         double r = Math.sqrt(x * x + y * y);
         return r;
+    }
+    public double getRSquared(){ //Получения квадрата модуля в тех случаях, когда нужно лишь сравнить. Срезает вычислительнозатратную операцию нахождения корня
+        double rSquared = x * x + y * y;
+        return rSquared;
     }
     public double getTheta(){ //Получение угла между вектором и горизонталью
         double theta = Math.atan2(y, x);

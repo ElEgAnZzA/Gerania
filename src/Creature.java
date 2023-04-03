@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+
 public class Creature {
 
     //Координаты (x, y):
@@ -18,7 +23,7 @@ public class Creature {
     private MovementPattern movementPattern;
     private boolean isControlled = false;
 
-    String sprite; //Спрайт Creature, пока не используется
+    Image sprite; //Спрайт Creature, пока не используется
 
     private boolean hasVerticalCollision = false;
     private boolean hasHorizontalCollision = false;
@@ -116,6 +121,8 @@ public class Creature {
         return isControlled;
     }
 
+    public Image getSprite(){return sprite;}
+
     public boolean hasVerticalCollision() {
         return hasVerticalCollision;
     }
@@ -164,6 +171,7 @@ public class Creature {
     public void setIsControlled(boolean isControlled) {
         this.isControlled = isControlled;
     }
+    public void setSprite(Image sprite){this.sprite=sprite;}
 
     //Внутренние функции:
     private void forcesPop(int num){ //Убирает элемент с индексом num из forces, сдвигает остаток массива влево, чтобы не было пропусков
@@ -174,6 +182,16 @@ public class Creature {
             forces [kForces-1] = null;
             kForces--;
         }
+    }
+    public void loadSprite(String fileName){
+        File spriteFile = new File("./src/art/"+fileName);
+        try{
+            sprite = ImageIO.read(spriteFile);
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        this.sprite = sprite;
     }
 
 
@@ -228,13 +246,21 @@ public class Creature {
             GameObject gameObject = gameObjects[i];
             Point objectCenter = new Point(gameObject.getX()+gameObject.getWidth()/2, gameObject.getY()+gameObject.getHeight()/2);
             Point center = new Point(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2);
-            Vector collisionDirection = new Vector(center.getX()-objectCenter.getX(), center.getY()-objectCenter.getY());
-            collisionDirection.setX(gameObject.getHeight()/(2*Math.tan(collisionDirection.getTheta())));
-            if (Math.abs(collisionDirection.getX())<gameObject.getWidth()/2) {
+            Vector[] possibleCollisionVectors = {new Vector(objectCenter, center), new Vector(center, new Point(this.x, this.y)), new Vector(center, new Point(this.x+this.width, this.y)),
+                    new Vector(center, new Point(this.x+this.width, this.y+this.height)), new Vector(center, new Point(this.x, this.y+this.height))};
+            Vector collisionVector = possibleCollisionVectors[0];
+            for (int j = 1; j<possibleCollisionVectors.length; j++){
+                if (possibleCollisionVectors[j].getRSquared()<collisionVector.getRSquared()) {
+                    collisionVector.setX(possibleCollisionVectors[i].getX());
+                    collisionVector.setY(possibleCollisionVectors[i].getY());
+                }
+            }
+            collisionVector.setX(gameObject.getHeight()/(2*Math.tan(collisionVector.getTheta())));
+            if (Math.abs(collisionVector.getX())<gameObject.getWidth()/2) {
                 res = 2;
                 this.hasVerticalCollision = true;
             }
-            else if (Math.abs(collisionDirection.getX())>gameObject.getWidth()/2) {
+            else if (Math.abs(collisionVector.getX())>gameObject.getWidth()/2) {
                 res = 1;
                 this.hasHorizontalCollision = true;
             }
@@ -272,7 +298,6 @@ public class Creature {
             else
                 finished = true;
         }
-        System.out.println(this.checkCollision(gameObjects, 0));
         this.setX(this.getX()-this.velocity.getX());
         this.setY(this.getY()-this.velocity.getY());
         Vector finalVelocity = new Vector(this.getVelocity().getX(), this.getVelocity().getY());
