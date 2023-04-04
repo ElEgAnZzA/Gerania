@@ -27,6 +27,10 @@ public class Main extends JFrame{
     public static final Force GRAVITY = new Force(0, 0.5, -1);
     private int playerControlledCreatureId = 0;
 
+    //Системные константы:
+    public static final int KEYBOARD_INDEX_0 = 96;
+    public static final int KEYBOARD_INDEX_9 = 105;
+
     //Системные неконстанты:
     public static int PLAYER_CREATURE_MOVE_LEFT = 37; //Код стрелки влево на клавиатуре
     public static int PLAYER_CREATURE_MOVE_RIGHT = 39; //Код стрелки вправо на клавиатуре
@@ -34,7 +38,7 @@ public class Main extends JFrame{
     double cameraX = 0;
     double cameraY = 0;
     Spell[] spells;
-    int selectedSpell = 0;
+    int selectedSpell;
     public Main(String title){
         super(title);
         setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -50,13 +54,20 @@ public class Main extends JFrame{
         gameObjects[0] = new GameObject(0, 300, 300, 73);
         gameObjects[1] = new GameObject(100, 100, 30, 120);
         kGameObjects = 2;
-        creatures[0] = new Creature(200, 250, 8, 32);
+        creatures[0] = new Creature(200, 250, 8, 32,1);
         creatures[0].applyForce(GRAVITY);
         creatures[0].loadSprite("playerCharacterIdle.png");
-        kCreatures = 1;
+        creatures[0].setMaxHealth(2000);
+        creatures[0].setHealth(2000);
+
+        creatures[1] = new Creature(1000, 500, 64, 64, 1);
+        creatures[1].loadSprite("fireball.png");
+        creatures[1].setMaxHealth(20);
+        kCreatures = 2;
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
+        setSelectedSpell(0);
 
 
         while (true){
@@ -67,16 +78,15 @@ public class Main extends JFrame{
             catch (java.lang.InterruptedException e){
                 e.printStackTrace();
             }
-            try{
-                System.out.println(creatures[1]+" | "+kCreatures);
-            }
-            catch (NoSuchElementException e){
-            }
+            System.out.println(creatures[1].getHealth());
 //            System.out.println(creatures[0]+" "+creatures[0].checkCollision(gameObjects, 0));
         }
     }
     public static void main(String[] args) {
         Main main = new Main("Gerania");
+    }
+    public void setSelectedSpell(int selectedSpell){
+        this.selectedSpell=selectedSpell;
     }
     class MyPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener{
         Main main;
@@ -116,6 +126,9 @@ public class Main extends JFrame{
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
                 else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision())
                     creatures[playerControlledCreatureId].move(new Vector(0, -4));
+                else if (keyCode>=KEYBOARD_INDEX_0&&keyCode<=KEYBOARD_INDEX_9){
+                    main.setSelectedSpell(keyCode-KEYBOARD_INDEX_0);
+                }
             }
         }
 
@@ -136,11 +149,7 @@ public class Main extends JFrame{
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            int res = main.spells[main.selectedSpell].cast(0,new Point(e.getX(), e.getY()), cameraX, cameraY, gameObjects, kGameObjects, creatures, kCreatures);
-            if (res==1)
-                kGameObjects++;
-            else if (res==2)
-                kCreatures++;
+            main.spells[main.selectedSpell].cast(0,new Point(e.getX(), e.getY()), main);
         }
 
         @Override
