@@ -127,7 +127,7 @@ public class Vector {
 }
 
 class Force extends Vector{
-    int time; //Время действия силы, с каждым обновлением Creature, которому она приложена, уменьшается на 1
+    private int time; //Время действия силы, с каждым обновлением Creature, которому она приложена, уменьшается на 1
     //Если time = -1, то сила действует условно вечно
 
 
@@ -140,6 +140,10 @@ class Force extends Vector{
     public Force(double r, double theta, int time, boolean ignored){ //Конструктор, на входе координаты (r, θ), время действия силы time и булевская переменная
         //(нужна, чтобы отличить от обычного конструктора, значение не важно)
         super(r, theta);
+        this.time = time;
+    }
+    public Force (Vector a, int time){
+        super(a.getX(), a.getY());
         this.time = time;
     }
 

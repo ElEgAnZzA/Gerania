@@ -1,0 +1,3 @@
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) null
+loaded Interaction (for collision with GameObjects) null

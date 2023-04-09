@@ -1,46 +1,65 @@
-//TODO: 1. Finish and polish up MovementPattern
-//TODO: 2. Make a spell system
-//TODO: 3. Исправить конструктор MPTarget (просит не список существ и id, а ссылку на существо) - спросить у ДМ
-//TODO: 4. Front-end design
+//TODO: 2. Front-end design
+//TODO: 3. Level load/save
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Main extends JFrame{
     private static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    private static final int SCREEN_WIDTH = (int)dim.getWidth();
-    private static final int SCREEN_HEIGHT = (int)dim.getHeight();
+    public static final int SCREEN_WIDTH = (int)dim.getWidth();
+    public static final int SCREEN_HEIGHT = (int)dim.getHeight();
     boolean debug = false;
-    private MyPanel panel;
+    public MyPanel panel;
 
 
     //Типа глобальные-неглобальные списки:
     public Creature[] creatures = new Creature[1000];
-    public int kCreatures = 0;
+    public short kCreatures = 0;
     public GameObject[] gameObjects = new GameObject[1000];
-    public int kGameObjects = 0;
+    public short kGameObjects = 0;
 
     //Игровые константы:
     public static final int CREATURE_MAX_VELOCITY = 20;
-    public static final Force GRAVITY = new Force(0, 0.5, -1);
+    public static final Force GRAVITY = new Force(0, 0.05, -1);
     private int playerControlledCreatureId = 0;
 
     //Системные константы:
     public static final int KEYBOARD_INDEX_0 = 96;
     public static final int KEYBOARD_INDEX_9 = 105;
 
+
     //Системные неконстанты:
+    long endTime = System.currentTimeMillis();
+    long beginningTime = System.currentTimeMillis();
     public static int PLAYER_CREATURE_MOVE_LEFT = 37; //Код стрелки влево на клавиатуре
     public static int PLAYER_CREATURE_MOVE_RIGHT = 39; //Код стрелки вправо на клавиатуре
     public static int PLAYER_CREATURE_JUMP = 32; //Код пробела
+    public static int PAUSE = 27; //Escape
     double cameraX = 0;
     double cameraY = 0;
     Spell[] spells;
     int selectedSpell;
+    boolean isPaused = false;
+    boolean gameOver = false;
+    public PrintStream log;
     public Main(String title){
         super(title);
+
+        try{
+            log = new PrintStream(new File("./src/logs/"+endTime+".txt"));
+        }
+        catch (java.io.FileNotFoundException e){
+            e.printStackTrace();
+        }
+
         setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         setUndecorated(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,38 +68,41 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-        setVisible(true);
 
-        gameObjects[0] = new GameObject(0, 300, 300, 73);
-        gameObjects[1] = new GameObject(100, 100, 30, 120);
-        kGameObjects = 2;
-        creatures[0] = new Creature(200, 250, 8, 32,1);
-        creatures[0].applyForce(GRAVITY);
-        creatures[0].loadSprite("playerCharacterIdle.png");
-        creatures[0].setMaxHealth(2000);
-        creatures[0].setHealth(2000);
+        gameObjects[0] = new GameObject(0, 300, 3000, 100);
+        kGameObjects = 1;
 
-        creatures[1] = new Creature(1000, 500, 64, 64, 1);
-        creatures[1].loadSprite("fireball.png");
-        creatures[1].setMaxHealth(20);
+//        gameObjects[1] = new GameObject(100, 100, 30, 120);
+//        kGameObjects = 2;
+        creatures[0] = new Creature(200, 200, 8, 32,1, endTime, 0);
+        creatures[0].loadCreature("playerCharacter.txt", this);
+        creatures[0].applyGravity(GRAVITY);
+
+        creatures[1] = new CreatureBossScholar(700, 150, endTime, 1);
+        creatures[1].applyGravity(GRAVITY);
+
         kCreatures = 2;
+//
+//        creatures[1] = new Creature(1000, 500, 64, 64, 1, endTime);
+//        creatures[1].loadSprite("fireball.png");
+//        creatures[1].setMaxHealth(20);
+//
+//        creatures[2] = new Creature(1000, 100, 1, 1, 1, endTime);
+//        creatures[2].loadCreature("fireball.txt", this);
+//        kCreatures = 3;
+//        System.out.println(creatures[2]);
+
+//        loadLevel("1.txt");
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
         setSelectedSpell(0);
 
 
-        while (true){
-            panel.repaint();
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            }
-            catch (java.lang.InterruptedException e){
-                e.printStackTrace();
-            }
-            System.out.println(creatures[1].getHealth());
-//            System.out.println(creatures[0]+" "+creatures[0].checkCollision(gameObjects, 0));
-        }
+
+        endTime = System.currentTimeMillis();
+
+        setVisible(true);//Должно быть в самом конце, т.к. вызывает repaint(), а значит, начинает игровой цикл
     }
     public static void main(String[] args) {
         Main main = new Main("Gerania");
@@ -88,8 +110,53 @@ public class Main extends JFrame{
     public void setSelectedSpell(int selectedSpell){
         this.selectedSpell=selectedSpell;
     }
+    public void clearGameObjects(){
+        for (int i = 0; i<kGameObjects; i++){
+            gameObjects[i]=null;
+        }
+        kGameObjects = 0;
+    }
+    public void clearCreatures(){
+        for (int i = 0; i<kCreatures; i++){
+            creatures[i]=null;
+        }
+        kCreatures = 0;
+    }
+    public void loadLevel(String fileName){
+        log.println("loading level "+fileName+":");
+        try{
+            clearGameObjects();
+            log.println("GameObjects cleared");
+            clearCreatures();
+            log.println("Creatures cleared");
+            File levelFile = new File("./src/levels/"+fileName);
+            Scanner levelRead = new Scanner(levelFile);
+            kGameObjects = (short)levelRead.nextInt();
+            levelRead.nextLine();
+            for (int i = 0; i<kGameObjects; i++){
+                gameObjects[i] = GameObject.stringToGameObject(levelRead.nextLine());
+                log.println("GameObject "+gameObjects[i]+" loaded");
+            }
+            kCreatures = (short)levelRead.nextInt();
+            levelRead.nextLine();
+            for (int i = 0; i<kCreatures; i++){
+                creatures[i] = Creature.stringToCreature(levelRead.nextLine(), this);
+                log.println("Creature "+creatures[i]+" loaded");
+            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+    public int getPlayerControlledCreatureId(){
+        return playerControlledCreatureId;
+    }
+//    public void saveLevel(String fileName)
     class MyPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener{
+
+        int a = 0;
         Main main;
+
         public MyPanel(boolean isDoubleBuffered, Main main) {
             super(isDoubleBuffered);
             addMouseListener(this);
@@ -98,6 +165,14 @@ public class Main extends JFrame{
             this.main = main;
         }
         public void paint(Graphics g){
+            main.beginningTime = endTime;
+            main.endTime = System.currentTimeMillis();
+            if (creatures[playerControlledCreatureId].getX()-cameraX>3*SCREEN_WIDTH/5){
+                cameraX+=5;
+            }
+            if (cameraX>0&&(creatures[playerControlledCreatureId].getX()-cameraX<2*SCREEN_WIDTH/5)){
+                cameraX-=5;
+            }
             super.paint(g);
             g.setColor(Color.GREEN);
             for (int i=0; i<kGameObjects; i++){
@@ -105,9 +180,31 @@ public class Main extends JFrame{
             }
             g.setColor(Color.BLACK);
             for (int i = 0; i< kCreatures; i++){
-                creatures[i].update(main);
                 g.drawImage(creatures[i].getSprite(), (int)(creatures[i].getX()-cameraX), (int)(creatures[i].getY()-cameraY), creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                creatures[i].update(main);
             }
+            if(main.isPaused==true)
+                g.drawString("PAUSED", 10, 10);
+            if(gameOver) {
+                g.setColor(Color.white);
+                g.fillRect(0,0,main.SCREEN_WIDTH, main.SCREEN_HEIGHT);
+                g.setColor(Color.black);
+                try {
+                    g.drawImage(ImageIO.read(new File("./src/art/gameOver.png")), (main.SCREEN_WIDTH-800)/2, (main.SCREEN_HEIGHT-600)/2, panel);
+                }
+                catch(IOException e){
+
+                }
+            }
+            while(isPaused||gameOver){
+                try {
+                    TimeUnit.MILLISECONDS.sleep(100);
+                }
+                catch (java.lang.InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            repaint();
         }
 
         @Override
@@ -125,10 +222,13 @@ public class Main extends JFrame{
                 else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
                 else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision())
-                    creatures[playerControlledCreatureId].move(new Vector(0, -4));
+                    creatures[playerControlledCreatureId].move(new Vector(0, -10));
+                else if (keyCode == PAUSE)
+                    isPaused = !isPaused;
                 else if (keyCode>=KEYBOARD_INDEX_0&&keyCode<=KEYBOARD_INDEX_9){
                     main.setSelectedSpell(keyCode-KEYBOARD_INDEX_0);
                 }
+
             }
         }
 
@@ -170,6 +270,10 @@ public class Main extends JFrame{
         @Override
         public void mouseMoved(MouseEvent e) {
 
+        }
+        public void gameOver(){
+            gameOver = true;
+            repaint();
         }
     }
 }

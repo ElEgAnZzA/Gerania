@@ -1,0 +1,14 @@
+//Ширина и высота:
+32 32
+//Максимальное здоровье, масса и модуль скорости на момент призыва:
+-1 1 10
+//diesOnCollision, isControlled, коэффициент гравитации (если 0, то не гравитируется):
+1 0 0
+//Sprite - название файла:
+lightningBall.png
+//Movement pattern:
+0 0 0
+//Interaction on collision with a creature:
+0 10
+//Interaction on collision with a GameObject:
+2 15 160 16

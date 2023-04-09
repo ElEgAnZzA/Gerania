@@ -59,4 +59,8 @@ public class GameObject {
     public String toString(){
         return "GameObject at:"+this.getX()+" "+this.getY()+"; Width:"+this.getWidth()+"; Height:"+this.getHeight();
     }
+    public static GameObject stringToGameObject(String string){
+        String[] parameters = string.split(" ");
+        return new GameObject(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), Integer.valueOf(parameters[2]), Integer.valueOf(parameters[3]));
+    }
 }
