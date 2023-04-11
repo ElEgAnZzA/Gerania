@@ -13,7 +13,7 @@ public class CreatureBossScholar extends Creature{
 
     public CreatureBossScholar(double x, double y, long time, int index){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT, BOSS_MASS, time, index);
-        this.setIsControlled(true);
+        this.setIsControlled(false);
         this.setMaxHealth(200);
         this.loadSprite("bossScholar.png");
         this.setCreatureCollisionInteraction(new InteractionHurt(10));
@@ -56,7 +56,7 @@ public class CreatureBossScholar extends Creature{
         this.setLastY(this.getY());
 
         for (int i = 0; i<kForces; i++){
-            velocity.addToThis(forces[i].x(1/this.getMass()));
+            velocity.addToThis(forces[i].x(1.0/this.getMass()));
             if (forces[i].getTime()>1)
                 forces[i].decreaseTime();
             else if (forces[i].getTime()>-1)
@@ -66,8 +66,8 @@ public class CreatureBossScholar extends Creature{
             this.velocity = detectGameObjectCollisions(main);
         }
 
-        this.setX(this.getX()+this.velocity.getX()* timePassedModifier);
-        this.setY(this.getY()+this.velocity.getY()* timePassedModifier);
+        this.setX(this.getX()+this.velocity.getX());
+        this.setY(this.getY()+this.velocity.getY());
 
         if(this.getY() > main.SCREEN_HEIGHT){
             this.setY(this.getY() - main.SCREEN_HEIGHT);

@@ -1,0 +1,12 @@
+//kGameObjects:
+1
+//GameObject (x, y, width, height):
+0 300 3000 100
+//Player - Creature (x, y, playerCharacter.txt)
+200 200 playerCharacter.txt
+//kCreatures:
+0
+//BossId:
+1
+//Boss - CreatureBossScholar (x, y)
+700 150

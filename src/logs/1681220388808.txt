@@ -1,0 +1,61 @@
+loading level devTest.txt:
+GameObjects cleared
+Creatures cleared
+GameObject GameObject at:0.0 300.0; Width:3000; Height:100 loaded
+loading creature Creature at:200.0 200.0; Width:0; Height:0
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) null
+loaded Interaction (for collision with GameObjects) null
+Player character Creature at:200.0 200.0; Width:16; Height:64 loaded
+Level devTest.txt loaded
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null

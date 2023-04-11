@@ -27,8 +27,8 @@ public class Main extends JFrame{
     public short kGameObjects = 0;
 
     //Игровые константы:
-    public static final int CREATURE_MAX_VELOCITY = 20;
-    public static final Force GRAVITY = new Force(0, 0.05, -1);
+    public static final int CREATURE_MAX_VELOCITY = 50;
+    public static final Force GRAVITY = new Force(0, 3, -1);
     private int playerControlledCreatureId = 0;
 
     //Системные константы:
@@ -68,31 +68,7 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-
-        gameObjects[0] = new GameObject(0, 300, 3000, 100);
-        kGameObjects = 1;
-
-//        gameObjects[1] = new GameObject(100, 100, 30, 120);
-//        kGameObjects = 2;
-        creatures[0] = new Creature(200, 200, 8, 32,1, endTime, 0);
-        creatures[0].loadCreature("playerCharacter.txt", this);
-        creatures[0].applyGravity(GRAVITY);
-
-        creatures[1] = new CreatureBossScholar(700, 150, endTime, 1);
-        creatures[1].applyGravity(GRAVITY);
-
-        kCreatures = 2;
-//
-//        creatures[1] = new Creature(1000, 500, 64, 64, 1, endTime);
-//        creatures[1].loadSprite("fireball.png");
-//        creatures[1].setMaxHealth(20);
-//
-//        creatures[2] = new Creature(1000, 100, 1, 1, 1, endTime);
-//        creatures[2].loadCreature("fireball.txt", this);
-//        kCreatures = 3;
-//        System.out.println(creatures[2]);
-
-//        loadLevel("1.txt");
+        loadLevel("devTest.txt");
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
@@ -137,12 +113,30 @@ public class Main extends JFrame{
                 gameObjects[i] = GameObject.stringToGameObject(levelRead.nextLine());
                 log.println("GameObject "+gameObjects[i]+" loaded");
             }
-            kCreatures = (short)levelRead.nextInt();
+
+            creatures[0] = Creature.stringToCreature(levelRead.nextLine(), this);
+            log.println("Player character "+creatures[0]+" loaded");
+
+            kCreatures = (short)(levelRead.nextInt()+1);
             levelRead.nextLine();
-            for (int i = 0; i<kCreatures; i++){
+            for (int i = 1; i<kCreatures; i++){
                 creatures[i] = Creature.stringToCreature(levelRead.nextLine(), this);
                 log.println("Creature "+creatures[i]+" loaded");
             }
+            int bossId = levelRead.nextInt();
+            levelRead.nextLine();
+            switch (bossId){
+                case(1):
+                    String bossString = levelRead.nextLine();
+                    String[] parameters = bossString.split(" ");
+                    creatures[kCreatures] = new CreatureBossScholar(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), endTime, kCreatures);
+                    creatures[kCreatures].applyGravity(GRAVITY);
+                    kCreatures++;
+                    break;
+                default:
+            }
+            levelRead.close();
+            log.println("Level "+fileName+" loaded");
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
@@ -204,6 +198,7 @@ public class Main extends JFrame{
                     e.printStackTrace();
                 }
             }
+            System.out.println(creatures[0].hasVerticalCollision()+" | "+creatures[0].hasHorizontalCollision());
             repaint();
         }
 
@@ -217,12 +212,14 @@ public class Main extends JFrame{
             if (playerControlledCreatureId>=0&&playerControlledCreatureId<kCreatures){
                 int keyCode = e.getKeyCode();
                 if(keyCode == PLAYER_CREATURE_MOVE_LEFT) {
-                    creatures[playerControlledCreatureId].move(new Vector(-1, 0));
+                    creatures[playerControlledCreatureId].move(new Vector(-50, 0));
                 }
                 else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
-                    creatures[playerControlledCreatureId].move(new Vector(1,0));
-                else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision())
-                    creatures[playerControlledCreatureId].move(new Vector(0, -10));
+                    creatures[playerControlledCreatureId].move(new Vector(50,0));
+                else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision()) {
+                    creatures[playerControlledCreatureId].move(new Vector(0, -300));
+                    System.out.println("JUMPING");
+                }
                 else if (keyCode == PAUSE)
                     isPaused = !isPaused;
                 else if (keyCode>=KEYBOARD_INDEX_0&&keyCode<=KEYBOARD_INDEX_9){

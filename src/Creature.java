@@ -115,6 +115,9 @@ public class Creature {
     public Vector getVelocity() {
         return velocity;
     }
+    public Force[] getForces(){
+        return forces;
+    }
 
     public MovementPattern getMovementPattern() {
         return movementPattern;
@@ -245,12 +248,16 @@ public class Creature {
         this.detectCreatureCollisions(main);
         hasHorizontalCollision = false;
         hasVerticalCollision = false;
+
+        lastX = this.getX();
+        lastY = this.getY();
+
         if(!isControlled&&movementPattern!=null){
             this.move(movementPattern.getNextAction(main, this));
         }
         if(mass!=0) {
             for (int i = 0; i < kForces; i++) {
-                velocity.addToThis(forces[i].x(1 / mass));
+                this.velocity = this.velocity.add(forces[i].x(1.0 / mass).x(timePassedModifier));
                 if (forces[i].getTime() > 1)
                     forces[i].decreaseTime();
                 else if (forces[i].getTime() > -1)
@@ -261,18 +268,14 @@ public class Creature {
             }
         }
 
-        lastX = this.getX();
-        lastY = this.getY();
-
         if (hasHorizontalCollision||hasVerticalCollision) {
             if(gameObjectCollisionInteraction!=null)
                 gameObjectCollisionInteraction.interact(main, this, -1);
             if(diesOnCollision)
                 this.kill(main);
         }
-
-        this.setX(this.getX()+ this.getVelocity().getX()*timePassedModifier);
-        this.setY(this.getY()+ this.getVelocity().getY()*timePassedModifier);
+        this.setX(this.getX()+ this.getVelocity().getX());
+        this.setY(this.getY()+ this.getVelocity().getY());
 
         if(this.y > main.SCREEN_HEIGHT){
             if(this.isControlled==true){
@@ -286,9 +289,9 @@ public class Creature {
         if(this.y<-main.SCREEN_HEIGHT)
             this.kill(main);
 
-
+        this.applyForce(new Force(this.velocity.getX()*(-0.05), 0, 1));
         if (hasVerticalCollision){
-            this.applyForce(new Force(this.velocity.getX()*(-0.01), 0, 1));
+            this.move(new Vector(0, -0.01));
         }
     }
     public void applyForce(Force force){ //Добавляет новую Force в forces.
@@ -317,7 +320,7 @@ public class Creature {
             GameObject gameObject = main.gameObjects[i];
             Point objectCenter = new Point(gameObject.getX()+gameObject.getWidth()/2, gameObject.getY()+gameObject.getHeight()/2);
             Point center = new Point(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2);
-            Vector[] possibleCollisionVectors = {new Vector(objectCenter, center), new Vector(objectCenter, new Point(this.x, this.y)), new Vector(objectCenter, new Point(this.x+this.width, this.y)),
+            Vector[] possibleCollisionVectors = {new Vector(objectCenter, new Point(this.x, this.y)), new Vector(objectCenter, new Point(this.x+this.width, this.y)),
                     new Vector(objectCenter, new Point(this.x+this.width, this.y+this.height)), new Vector(objectCenter, new Point(this.x, this.y+this.height))};
             Vector collisionVector = possibleCollisionVectors[0];
             for (int j = 1; j<possibleCollisionVectors.length; j++){
@@ -364,8 +367,8 @@ public class Creature {
                 kYCollisions++;
             }
         }
-        this.setX(this.getX()-this.velocity.getX()*timePassedModifier);
-        this.setY(this.getY()-this.velocity.getY()*timePassedModifier);
+        this.setX(this.lastX);
+        this.setY(this.lastY);
         Vector finalVelocity = new Vector(this.getVelocity().getX()*timePassedModifier, this.getVelocity().getY()*timePassedModifier);
         double j;
         for (int i=0; i<kXCollisions; i++){ //Горизонтальные столкновения
@@ -506,7 +509,6 @@ public class Creature {
         }
     }
     public static Creature stringToCreature(String string, Main main){
-
         String[] parameters = string.split(" ");
         Creature res = new Creature(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), 0, 0, 0, main.endTime, main.kCreatures);
         main.log.println("loading creature "+res);

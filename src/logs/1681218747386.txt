@@ -1,0 +1,3 @@
+loading level devTest.txt:
+GameObjects cleared
+Creatures cleared

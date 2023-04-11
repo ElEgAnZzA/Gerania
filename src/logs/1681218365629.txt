@@ -1,0 +1,4 @@
+loading level devTest.txt:
+GameObjects cleared
+Creatures cleared
+GameObject GameObject at:0.0 300.0; Width:3000; Height:100 loaded
