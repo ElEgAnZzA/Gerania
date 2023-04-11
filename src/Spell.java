@@ -34,6 +34,7 @@ public class Spell {
                 Vector fireballVel = new Vector(new Point(casterX, casterY), new Point(main.cameraX+click.getX(), main.cameraY+click.getY()));
                 main.creatures[main.kCreatures].setVelocity(fireballVel);
                 main.creatures[main.kCreatures].loadCreature("fireball.txt", main);
+                System.out.println(main.creatures[main.kCreatures]+" "+main.creatures[main.kCreatures].getVelocity());
                 main.kCreatures++;
                 break;
             default:

@@ -4,77 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/levels/example.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681216791219.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681216898971.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681217027622.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681217181856.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681217373380.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681217394453.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218117751.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218155809.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218211733.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218223140.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218265824.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218294284.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218365629.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218395129.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218412898.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218463973.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218518368.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218529105.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218747386.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218837858.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218878133.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218960818.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681218977453.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219145475.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219245749.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219270394.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219415230.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219493632.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219535545.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219549803.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219566608.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219633450.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219647429.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219672920.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219704599.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219769932.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681219781470.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220235730.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220248447.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220368074.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220388808.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220420093.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220438217.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220542815.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220582979.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220591766.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220619009.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220675805.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220724932.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220739269.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220776039.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220800894.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220824393.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220840839.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220905581.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681220944913.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221019895.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221101640.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221201409.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221250229.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221266415.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221438539.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681221496561.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="More fixes that produce more bugs">
+      <change afterPath="$PROJECT_DIR$/src/logs/1681221577542.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatures/lightningBall.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/lightningBall.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676576877498</updated>
-      <workItem from="1681221530085" duration="634000" />
+      <workItem from="1681221530085" duration="3081000" />
     </task>
     <task id="LOCAL-00001" summary="Fully made class Vector ig (probably not)">
       <created>1676580372660</created>
@@ -181,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680593152045</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="More fixes that produce more bugs">
+      <created>1681222296840</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1681222296840</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +162,7 @@
     <MESSAGE value="I redid the whole collision detection system and now it's cool" />
     <MESSAGE value="Before I redo how this works" />
     <MESSAGE value="Old game, new problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="Old game, new problems" />
+    <MESSAGE value="More fixes that produce more bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="More fixes that produce more bugs" />
   </component>
 </project>

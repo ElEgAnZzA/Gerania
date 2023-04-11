@@ -246,8 +246,8 @@ public class Creature {
         //[ПЕРЕПИСАТЬ ПОЯСНЯЮЩИЙ КОММЕНТАРИЙ]
         timePassedModifier = (main.endTime - main.beginningTime)/20.0;
         this.detectCreatureCollisions(main);
-        hasHorizontalCollision = false;
-        hasVerticalCollision = false;
+//        hasHorizontalCollision = false;
+//        hasVerticalCollision = false;
 
         lastX = this.getX();
         lastY = this.getY();
@@ -264,7 +264,7 @@ public class Creature {
                     forcesPop(i);
                 if (velocity.getR() >= Main.CREATURE_MAX_VELOCITY)
                     velocity.setR(Main.CREATURE_MAX_VELOCITY);
-                this.velocity = detectGameObjectCollisions(main);
+                this.velocity = detectGameObjectCollisions(main); //Если будет плохо с производительностью, можно вынести за пределы цикла
             }
         }
 
@@ -290,10 +290,7 @@ public class Creature {
             this.kill(main);
 
         this.applyForce(new Force(this.velocity.getX()*(-0.05), 0, 1));
-        if (hasVerticalCollision){
-            this.move(new Vector(0, -0.01));
         }
-    }
     public void applyForce(Force force){ //Добавляет новую Force в forces.
         // Если forces (т.е. там 50 элементов <=> kForces = 50) заполнен, то ничего не делает
         if (kForces<50){
@@ -329,12 +326,11 @@ public class Creature {
                     collisionVector.setY(possibleCollisionVectors[i].getY());
                 }
             }
-            collisionVector.setX(gameObject.getHeight()/(2*Math.tan(collisionVector.getTheta())));
-            if (Math.abs(collisionVector.getX())<gameObject.getWidth()/2) {
+            if (Math.abs(collisionVector.getX()*selectedHeight)<Math.abs(collisionVector.getY()*selectedWidth)) {
                 res = 2;
                 this.hasVerticalCollision = true;
             }
-            else if (Math.abs(collisionVector.getX())>gameObject.getWidth()/2) {
+            else if (Math.abs(collisionVector.getX()*selectedHeight)>Math.abs(collisionVector.getY()*selectedWidth)) {
                 res = 1;
                 this.hasHorizontalCollision = true;
             }
@@ -382,6 +378,8 @@ public class Creature {
             if(Math.abs(k)< Math.abs(finalVelocity.getY()))
                 finalVelocity.setY(k);
         }
+        hasHorizontalCollision = (int)kXCollisions!=0;
+        hasVerticalCollision = (int)kYCollisions!=0;
         return finalVelocity;
     }
     private double resolveGameObjectXCollisions(Main main, int collision){

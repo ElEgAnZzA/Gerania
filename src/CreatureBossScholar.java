@@ -24,7 +24,7 @@ public class CreatureBossScholar extends Creature{
             Creature player = main.creatures[main.getPlayerControlledCreatureId()];
             Vector jump = new Vector(0, -20);
             this.move(jump);
-            jumpMoveDirection = new Vector((player.getX()-this.getX())/800,0);
+            jumpMoveDirection = new Vector((player.getX()-this.getX())/200.0,0);
             jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX());
             this.move(jumpMoveDirection);
         }
