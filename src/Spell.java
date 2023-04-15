@@ -34,10 +34,22 @@ public class Spell {
                 Vector fireballVel = new Vector(new Point(casterX, casterY), new Point(main.cameraX+click.getX(), main.cameraY+click.getY()));
                 main.creatures[main.kCreatures].setVelocity(fireballVel);
                 main.creatures[main.kCreatures].loadCreature("fireball.txt", main);
-                System.out.println(main.creatures[main.kCreatures]+" "+main.creatures[main.kCreatures].getVelocity());
                 main.kCreatures++;
                 break;
+            case (2): //Лечение (на 20 хп)
+                main.creatures[casterIndex].setHealth(main.creatures[casterIndex].getHealth()+20);
+                break;
             default:
+        }
+    }
+    public int spellCost(){
+        switch (type){
+            case (1): //Огненный шар
+                return 10;
+            case (2): //Лечение (на 20 хп)
+                return 20;
+            default:
+                return 0;
         }
     }
     public String toString(){

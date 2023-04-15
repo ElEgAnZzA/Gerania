@@ -72,6 +72,7 @@ public class Main extends JFrame{
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
+        spells[1] = new Spell(2);
         setSelectedSpell(0);
 
 

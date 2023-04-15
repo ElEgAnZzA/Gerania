@@ -264,9 +264,10 @@ public class Creature {
                     forcesPop(i);
                 if (velocity.getR() >= Main.CREATURE_MAX_VELOCITY)
                     velocity.setR(Main.CREATURE_MAX_VELOCITY);
-                this.velocity = detectGameObjectCollisions(main); //Если будет плохо с производительностью, можно вынести за пределы цикла
+
             }
         }
+        this.velocity = detectGameObjectCollisions(main);
 
         if (hasHorizontalCollision||hasVerticalCollision) {
             if(gameObjectCollisionInteraction!=null)
