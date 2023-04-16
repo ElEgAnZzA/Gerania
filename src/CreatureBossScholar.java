@@ -10,6 +10,7 @@ public class CreatureBossScholar extends Creature{
 
     Vector jumpMoveDirection = new Vector(0,0);
     long lastTimeUsedSpell = 0;
+    boolean jumping = false;
 
     public CreatureBossScholar(double x, double y, long time, int index){
         super(x, y, BOSS_WIDTH, BOSS_HEIGHT, BOSS_MASS, time, index);
@@ -20,13 +21,18 @@ public class CreatureBossScholar extends Creature{
         this.lastTimeUsedSpell = time;
     }
     public void jump(Main main){
-        if (hasVerticalCollision()){
+        if (!jumping){
             Creature player = main.creatures[main.getPlayerControlledCreatureId()];
-            Vector jump = new Vector(0, -20);
+            Vector jump = new Vector(0, -200);
             this.move(jump);
             jumpMoveDirection = new Vector((player.getX()-this.getX())/200.0,0);
             jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX());
+            System.out.println(jumpMoveDirection+" - ");
+            if (jumpMoveDirection.getR()<1)
+                jumpMoveDirection.setR(1);
+            System.out.println("- "+jumpMoveDirection);
             this.move(jumpMoveDirection);
+            jumping = true;
         }
         else{
             this.move(jumpMoveDirection);
@@ -49,6 +55,9 @@ public class CreatureBossScholar extends Creature{
         //[ПЕРЕПИСАТЬ ПОЯСНЯЮЩИЙ КОММЕНТАРИЙ]
         timePassedModifier = (main.endTime - main.beginningTime)/20.0;
         this.detectCreatureCollisions(main);
+
+        if (hasVerticalCollision())
+            jumping=false;
         this.setHasHorizontalCollision(false);
         this.setHasVerticalCollision(false);
 
@@ -61,10 +70,11 @@ public class CreatureBossScholar extends Creature{
                 forces[i].decreaseTime();
             else if (forces[i].getTime()>-1)
                 forcesPop(i);
-            if (velocity.getR()>=Main.CREATURE_MAX_VELOCITY)
-                velocity.setR(Main.CREATURE_MAX_VELOCITY);
+            if (velocity.getR()>=2*Main.CREATURE_MAX_VELOCITY)
+                velocity.setR(2*Main.CREATURE_MAX_VELOCITY);
             this.velocity = detectGameObjectCollisions(main);
         }
+
 
         this.setX(this.getX()+this.velocity.getX());
         this.setY(this.getY()+this.velocity.getY());
@@ -77,9 +87,7 @@ public class CreatureBossScholar extends Creature{
             this.kill(main);
 
 
-        if (hasVerticalCollision()){
-            this.applyForce(new Force(this.velocity.getX()*(-0.01), 0, 1));
-        }
+        this.applyForce(new Force(this.velocity.getX()*(-0.01), 0, 1));
 
         this.jump(main);
         this.cast(main);

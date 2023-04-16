@@ -27,8 +27,8 @@ public class Main extends JFrame{
     public short kGameObjects = 0;
 
     //Игровые константы:
-    public static final int CREATURE_MAX_VELOCITY = 50;
-    public static final Force GRAVITY = new Force(0, 3, -1);
+    public static final int CREATURE_MAX_VELOCITY = 10;
+    public static final Force GRAVITY = new Force(0, 1, -1);
     private int playerControlledCreatureId = 0;
 
     //Системные константы:
@@ -36,7 +36,7 @@ public class Main extends JFrame{
     public static final int KEYBOARD_INDEX_9 = 105;
 
 
-    //Системные неконстанты:
+    //Системно-игровые неконстанты:
     long endTime = System.currentTimeMillis();
     long beginningTime = System.currentTimeMillis();
     public static int PLAYER_CREATURE_MOVE_LEFT = 37; //Код стрелки влево на клавиатуре
@@ -49,6 +49,8 @@ public class Main extends JFrame{
     int selectedSpell;
     boolean isPaused = false;
     boolean gameOver = false;
+    static final int MAX_PLAYER_MANA = 150;
+    double playerMana = MAX_PLAYER_MANA;
     public PrintStream log;
     public Main(String title){
         super(title);
@@ -178,6 +180,16 @@ public class Main extends JFrame{
                 g.drawImage(creatures[i].getSprite(), (int)(creatures[i].getX()-cameraX), (int)(creatures[i].getY()-cameraY), creatures[i].getWidth(), creatures[i].getHeight(), panel);
                 creatures[i].update(main);
             }
+
+            if(playerMana<MAX_PLAYER_MANA){
+                double addMana = (endTime-beginningTime)/500.0;
+                if (playerMana+addMana>MAX_PLAYER_MANA){
+                    playerMana=MAX_PLAYER_MANA;
+                }
+                else
+                    playerMana+=addMana;
+            }
+
             if(main.isPaused==true)
                 g.drawString("PAUSED", 10, 10);
             if(gameOver) {
@@ -199,7 +211,12 @@ public class Main extends JFrame{
                     e.printStackTrace();
                 }
             }
-            System.out.println(creatures[0].hasVerticalCollision()+" | "+creatures[0].hasHorizontalCollision());
+            try{
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
             repaint();
         }
 
@@ -213,18 +230,20 @@ public class Main extends JFrame{
             if (playerControlledCreatureId>=0&&playerControlledCreatureId<kCreatures){
                 int keyCode = e.getKeyCode();
                 if(keyCode == PLAYER_CREATURE_MOVE_LEFT) {
-                    creatures[playerControlledCreatureId].move(new Vector(-50, 0));
+                    creatures[playerControlledCreatureId].move(new Vector(-1, 0));
                 }
                 else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
-                    creatures[playerControlledCreatureId].move(new Vector(50,0));
+                    creatures[playerControlledCreatureId].move(new Vector(1,0));
                 else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision()) {
-                    creatures[playerControlledCreatureId].move(new Vector(0, -300));
+                    creatures[playerControlledCreatureId].move(new Vector(0, -15));
                     System.out.println("JUMPING");
+                    System.out.println(creatures[playerControlledCreatureId].hasVerticalCollision());
                 }
                 else if (keyCode == PAUSE)
                     isPaused = !isPaused;
                 else if (keyCode>=KEYBOARD_INDEX_0&&keyCode<=KEYBOARD_INDEX_9){
                     main.setSelectedSpell(keyCode-KEYBOARD_INDEX_0);
+                    System.out.println("Spell: "+keyCode);
                 }
 
             }
@@ -247,7 +266,13 @@ public class Main extends JFrame{
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            main.spells[main.selectedSpell].cast(0,new Point(e.getX(), e.getY()), main);
+            if(main.spells[main.selectedSpell].spellCost()<=playerMana) {
+                main.spells[main.selectedSpell].cast(0, new Point(e.getX(), e.getY()), main);
+                playerMana-=main.spells[main.selectedSpell].spellCost();
+                System.out.println(playerMana);
+            }
+            else
+                System.out.println("not enough mana");
         }
 
         @Override

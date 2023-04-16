@@ -5,12 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Older game, newer problems">
-      <change afterPath="$PROJECT_DIR$/src/logs/1681524374619.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681524459141.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531380981.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531593550.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531737373.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531839524.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531848342.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531866333.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531883268.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681531941736.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681533401896.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681533629739.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681533663946.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681533671377.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681654816536.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681654824709.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681654831800.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681654959013.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655008955.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655037992.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655301265.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655486465.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655502620.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655586181.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655654392.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655756703.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655783193.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681655878121.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681657850549.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/bossFireball.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/bossFireball.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/fireball.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/fireball.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/iceBall.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/iceBall.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/iceSpike.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/iceSpike.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/lightningBall.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/lightningBall.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/devTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +58,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="experimentsl" />
+        <entry key="$PROJECT_DIR$" value="123" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,6 +152,11 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1815920d-be00-4095-9698-66282e0f395b">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>

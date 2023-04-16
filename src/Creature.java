@@ -244,7 +244,7 @@ public class Creature {
     //Взаимодействие с Creature:
     public void update(Main main){ //Обновляет состояние Creature:
         //[ПЕРЕПИСАТЬ ПОЯСНЯЮЩИЙ КОММЕНТАРИЙ]
-        timePassedModifier = (main.endTime - main.beginningTime)/20.0;
+        timePassedModifier = (main.endTime - main.beginningTime)/50.0;
         this.detectCreatureCollisions(main);
 //        hasHorizontalCollision = false;
 //        hasVerticalCollision = false;
@@ -275,8 +275,8 @@ public class Creature {
             if(diesOnCollision)
                 this.kill(main);
         }
-        this.setX(this.getX()+ this.getVelocity().getX());
-        this.setY(this.getY()+ this.getVelocity().getY());
+        this.setX(this.getX()+ this.getVelocity().getX()*timePassedModifier);
+        this.setY(this.getY()+ this.getVelocity().getY()*timePassedModifier);
 
         if(this.y > main.SCREEN_HEIGHT){
             if(this.isControlled==true){
@@ -305,17 +305,16 @@ public class Creature {
             kForces++;
         }
     }
-    public int checkGameObjectCollision(Main main, int i) {//Возвращает тип столкновения: 0 - столкновения нет, 1 - горизонтальное, 2 - вертикальное, 3 - идеальное угловое
+    public int checkGameObjectCollision(GameObject gameObject) {//Возвращает тип столкновения: 0 - столкновения нет, 1 - горизонтальное, 2 - вертикальное, 3 - идеальное угловое
         int res = 0;
-        double selectedX = main.gameObjects[i].getX();
-        double selectedY = main.gameObjects[i].getY();
-        int selectedWidth = main.gameObjects[i].getWidth();
-        int selectedHeight = main.gameObjects[i].getHeight();
+        double selectedX = gameObject.getX();
+        double selectedY = gameObject.getY();
+        int selectedWidth = gameObject.getWidth();
+        int selectedHeight = gameObject.getHeight();
         if ((selectedX + selectedWidth > this.x) && //Условие первое: левая часть объекта левее, чем правая часть данного существа
                 (selectedX < this.x + this.width) && //Условие второе: правая часть объекта правее, чем левая часть данного существа
                 (selectedY + selectedHeight > this.y) && //Условие третье: верхняя часть объекта выше, чем нижняя часть данного существа
                 (selectedY < this.y + this.height)) { //Условие четвертое: нижняя часть объекта ниже, чем верхняя часть данного существа
-            GameObject gameObject = main.gameObjects[i];
             Point objectCenter = new Point(gameObject.getX()+gameObject.getWidth()/2, gameObject.getY()+gameObject.getHeight()/2);
             Point center = new Point(this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2);
             Vector[] possibleCollisionVectors = {new Vector(objectCenter, new Point(this.x, this.y)), new Vector(objectCenter, new Point(this.x+this.width, this.y)),
@@ -323,102 +322,92 @@ public class Creature {
             Vector collisionVector = possibleCollisionVectors[0];
             for (int j = 1; j<possibleCollisionVectors.length; j++){
                 if (possibleCollisionVectors[j].getRSquared()<collisionVector.getRSquared()) {
-                    collisionVector.setX(possibleCollisionVectors[i].getX());
-                    collisionVector.setY(possibleCollisionVectors[i].getY());
+                    collisionVector.setX(possibleCollisionVectors[j].getX());
+                    collisionVector.setY(possibleCollisionVectors[j].getY());
                 }
             }
             if (Math.abs(collisionVector.getX()*selectedHeight)<Math.abs(collisionVector.getY()*selectedWidth)) {
                 res = 2;
-                this.hasVerticalCollision = true;
             }
             else if (Math.abs(collisionVector.getX()*selectedHeight)>Math.abs(collisionVector.getY()*selectedWidth)) {
                 res = 1;
-                this.hasHorizontalCollision = true;
             }
             else {
                 res = 3;
-                this.hasVerticalCollision = true;
-                this.hasHorizontalCollision = true;
             }
         }
         return res;
     }
 
     public Vector detectGameObjectCollisions(Main main){
-        short[] xCollisions = new short[1000]; //Список всех номеров существ, с которыми происходит столкновение
-        short kXCollisions = 0;
-        short[] yCollisions = new short[1000];
-        short kYCollisions = 0;
+        GameObject[] collisions = new GameObject[100]; //Список всех номеров столкновений, если их больше 100 - есть проблемы куда больше, чем нехватка места в списке
+        short kCollisions = 0;
         this.setX(this.getX()+this.velocity.getX()*timePassedModifier);
         this.setY(this.getY()+this.velocity.getY()*timePassedModifier);
         for (short i = 0; i<main.kGameObjects&&!isDead; i++){
-            int res = checkGameObjectCollision(main, i);
+            int res = checkGameObjectCollision(main.gameObjects[i]);
             if (res == 1) {//Горизонтальное столкновение
                 hasHorizontalCollision = true;
-                xCollisions[kXCollisions] = i;
-                kXCollisions++;
+                collisions[kCollisions] = main.gameObjects[i];
+                kCollisions++;
             }
             else if (res>1) {//Вертикальное (2) или идеально диагональное (3) столкновения
                 hasVerticalCollision = true;
-                yCollisions[kYCollisions] = i;
-                kYCollisions++;
+                collisions[kCollisions] = main.gameObjects[i];
+                kCollisions++;
             }
         }
         this.setX(this.lastX);
         this.setY(this.lastY);
         Vector finalVelocity = new Vector(this.getVelocity().getX()*timePassedModifier, this.getVelocity().getY()*timePassedModifier);
-        double j;
-        for (int i=0; i<kXCollisions; i++){ //Горизонтальные столкновения
-            j = resolveGameObjectXCollisions(main, xCollisions[i]);
-            if(Math.abs(j)< Math.abs(finalVelocity.getX()))
-                finalVelocity.setX(j);
+        Vector resultingVelocity;
+        for (int i = 0; i<kCollisions; i++){
+            resultingVelocity = resolveGameObjectCollisions(main, collisions[i]);
+            if(Math.abs(resultingVelocity.getX())< Math.abs(finalVelocity.getX()))
+                finalVelocity.setX(resultingVelocity.getX());
+            if(Math.abs(resultingVelocity.getY())< Math.abs(finalVelocity.getY()))
+                finalVelocity.setY(resultingVelocity.getY());
         }
-        double k;
-        for (int i=0; i<kYCollisions; i++){ //Вертикальные столкновения
-            k = resolveGameObjectYCollisions(main, xCollisions[i]);
-            if(Math.abs(k)< Math.abs(finalVelocity.getY()))
-                finalVelocity.setY(k);
-        }
-        hasHorizontalCollision = (int)kXCollisions!=0;
-        hasVerticalCollision = (int)kYCollisions!=0;
-        return finalVelocity;
+        if (timePassedModifier>0)
+            return finalVelocity.x(1/timePassedModifier);
+        else
+            return finalVelocity;
     }
-    private double resolveGameObjectXCollisions(Main main, int collision){
+    private Vector resolveGameObjectCollisions(Main main, GameObject gameObject){
         double beginningX = this.getX();
-        double velX = this.getVelocity().getX()*timePassedModifier;
-        double partialVelX = velX/5;
-        double resVelX = 0;
-        for (int i = 0; i<5; i++){
-            this.setX(this.getX()+partialVelX);
-            resVelX += partialVelX;
-            if(checkGameObjectCollision(main, collision)==1){
-                this.setX(this.getX()-partialVelX);
-                resVelX -= partialVelX;
-                break;
+        double beginningY = this.getY();
+        Vector partialVelocity = this.velocity.x(timePassedModifier).x(0.1);
+        Vector resultingVelocity = new Vector(0,0);
+        boolean foundMaxVelX = false;
+        boolean foundMaxVelY = false;
+        for (int i = 0; i<10; i++){
+            if(!foundMaxVelX) {
+                this.setX(this.getX() + partialVelocity.getX());
+                if(checkGameObjectCollision(gameObject)==1) {
+                    this.setX(this.getX() - partialVelocity.getX());
+                    foundMaxVelX = true;
+                }
+                else{
+                    resultingVelocity.addToThis(new Vector(partialVelocity.getX(), 0));
+                }
+            }
+            if(!foundMaxVelY) {
+                this.setY(this.getY() + partialVelocity.getY());
+                if (checkGameObjectCollision(gameObject)==2) {
+                    this.setY(this.getY() - partialVelocity.getY());
+                    foundMaxVelY = true;
+                }
+                else {
+                    resultingVelocity.addToThis(new Vector(partialVelocity.getY(), 0));
+                }
             }
         }
         this.setX(beginningX);
-        return resVelX;
-    }
-    private double resolveGameObjectYCollisions(Main main, int collision){
-        double beginningY = this.getY();
-        double velY = this.getVelocity().getY()*timePassedModifier;
-        double partialVelY = velY/5;
-        double resVelY = 0;
-        for (int i = 0; i<5; i++){
-            this.setY(this.getY()+partialVelY);
-            resVelY += partialVelY;
-            if(checkGameObjectCollision(main, collision)==2){
-                this.setY(this.getY()-partialVelY);
-                resVelY -= partialVelY;
-                break;
-            }
-        }
         this.setY(beginningY);
-        return resVelY;
+        return resultingVelocity;
     }
     public void move(Vector direction){
-        this.applyForce(new Force(direction, 0));
+        this.velocity.addToThis(direction);
     }
     public void detectCreatureCollisions(Main main){
         for (int i = 0; i<main.kCreatures&&!isDead; i++){
