@@ -1,6 +1,0 @@
-loaded MovementPattern null
-loaded Interaction (for collision with Creatures) null
-loaded Interaction (for collision with GameObjects) null
-loaded MovementPattern null
-loaded Interaction (for collision with Creatures) InteractionBoom@13a97f50
-loaded Interaction (for collision with GameObjects) InteractionBoom@71782303

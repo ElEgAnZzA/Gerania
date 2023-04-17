@@ -1,5 +1,5 @@
 //TODO: 2. Front-end design
-//TODO: 3. Level load/save
+//TODO: 3. Level save
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +25,8 @@ public class Main extends JFrame{
     public short kCreatures = 0;
     public GameObject[] gameObjects = new GameObject[1000];
     public short kGameObjects = 0;
+    public TemporaryArt[] temporaryArts = new TemporaryArt[100];
+    public short kTemporaryArts = 0;
 
     //Игровые константы:
     public static final int CREATURE_MAX_VELOCITY = 10;
@@ -32,8 +34,8 @@ public class Main extends JFrame{
     private int playerControlledCreatureId = 0;
 
     //Системные константы:
-    public static final int KEYBOARD_INDEX_0 = 96;
-    public static final int KEYBOARD_INDEX_9 = 105;
+    public static final int KEYBOARD_INDEX_1 = 49;
+    public static final int KEYBOARD_INDEX_9 = 58;
 
 
     //Системно-игровые неконстанты:
@@ -75,6 +77,7 @@ public class Main extends JFrame{
         spells = new Spell[10];
         spells[0] = new Spell(1);
         spells[1] = new Spell(2);
+        spells[2] = new Spell(3);
         setSelectedSpell(0);
 
 
@@ -101,6 +104,12 @@ public class Main extends JFrame{
         }
         kCreatures = 0;
     }
+    public void clearTemporaryArts(){
+        for (int i = 0; i<kTemporaryArts; i++){
+            temporaryArts[i]=null;
+        }
+        kTemporaryArts = 0;
+    }
     public void loadLevel(String fileName){
         log.println("loading level "+fileName+":");
         try{
@@ -108,6 +117,8 @@ public class Main extends JFrame{
             log.println("GameObjects cleared");
             clearCreatures();
             log.println("Creatures cleared");
+            clearTemporaryArts();
+            log.println("TemporaryArts cleared");
             File levelFile = new File("./src/levels/"+fileName);
             Scanner levelRead = new Scanner(levelFile);
             kGameObjects = (short)levelRead.nextInt();
@@ -171,18 +182,37 @@ public class Main extends JFrame{
                 cameraX-=5;
             }
             super.paint(g);
+            g.setColor(Color.RED);
+            g.fillRect(SCREEN_WIDTH-250, 25, 200*creatures[playerControlledCreatureId].getHealth()/creatures[playerControlledCreatureId].getMaxHealth(), 20);
+            g.setColor(Color.CYAN);
+            g.fillRect(SCREEN_WIDTH-250, 50, (int)(200*playerMana/MAX_PLAYER_MANA), 20);
+            g.setColor(Color.BLACK);
+            g.drawRect(SCREEN_WIDTH-250, 25, 200, 20);
+            g.drawRect(SCREEN_WIDTH-250, 50, 200, 20);
+
             g.setColor(Color.GREEN);
-            for (int i=0; i<kGameObjects; i++){
-                g.drawRect((int)(gameObjects[i].getX()-cameraX), (int)(gameObjects[i].getY()-cameraY), gameObjects[i].getWidth(), gameObjects[i].getHeight());
+            for (int i=0; i<kGameObjects; i++) {
+                if (gameObjects[i].getX() + gameObjects[i].getWidth() > cameraX && gameObjects[i].getX() < cameraX + SCREEN_WIDTH) {
+                    g.drawRect((int) (gameObjects[i].getX() - cameraX), (int) (gameObjects[i].getY() - cameraY), gameObjects[i].getWidth(), gameObjects[i].getHeight());
+                }
             }
             g.setColor(Color.BLACK);
             for (int i = 0; i< kCreatures; i++){
-                g.drawImage(creatures[i].getSprite(), (int)(creatures[i].getX()-cameraX), (int)(creatures[i].getY()-cameraY), creatures[i].getWidth(), creatures[i].getHeight(), panel);
-                creatures[i].update(main);
+                if(creatures[i].getX()+creatures[i].getWidth()>cameraX&&creatures[i].getX()<cameraX+SCREEN_WIDTH) {
+                    g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), (int) (creatures[i].getY() - cameraY), creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                    creatures[i].update(main);
+                }
+            }
+
+            for (int i = 0; i<kTemporaryArts; i++){
+                if(temporaryArts[i].getX()+temporaryArts[i].getWidth()>cameraX&&temporaryArts[i].getX()<cameraX+SCREEN_WIDTH){
+                    g.drawImage(temporaryArts[i].getImage(), (int) (temporaryArts[i].getX() - cameraX), (int) (temporaryArts[i].getY() - cameraY), temporaryArts[i].getWidth(), temporaryArts[i].getHeight(), panel);
+                    temporaryArts[i].update(main, endTime);
+                }
             }
 
             if(playerMana<MAX_PLAYER_MANA){
-                double addMana = (endTime-beginningTime)/500.0;
+                double addMana = (endTime-beginningTime)/150.0;
                 if (playerMana+addMana>MAX_PLAYER_MANA){
                     playerMana=MAX_PLAYER_MANA;
                 }
@@ -241,9 +271,10 @@ public class Main extends JFrame{
                 }
                 else if (keyCode == PAUSE)
                     isPaused = !isPaused;
-                else if (keyCode>=KEYBOARD_INDEX_0&&keyCode<=KEYBOARD_INDEX_9){
-                    main.setSelectedSpell(keyCode-KEYBOARD_INDEX_0);
-                    System.out.println("Spell: "+keyCode);
+                else if (keyCode>=KEYBOARD_INDEX_1&&keyCode<=KEYBOARD_INDEX_9){
+                    int spellId = keyCode-KEYBOARD_INDEX_1;
+                    if (spells[spellId]!=null)
+                        main.setSelectedSpell(spellId);
                 }
 
             }

@@ -36,8 +36,26 @@ public class Spell {
                 main.creatures[main.kCreatures].loadCreature("fireball.txt", main);
                 main.kCreatures++;
                 break;
-            case (2): //Лечение (на 20 хп)
-                main.creatures[casterIndex].setHealth(main.creatures[casterIndex].getHealth()+20);
+            case (2): //Лечение (на 15 хп)
+                main.creatures[casterIndex].setHealth(main.creatures[casterIndex].getHealth()+15);
+                break;
+            case(3): //Отталкивание всех вблизи
+                Point casterPoint = new Point(casterX, casterY);
+                Point targetPoint;
+                Vector push;
+                for (int i = 0; i<main.kCreatures; i++){
+                    targetPoint = new Point(main.creatures[i].getX()+main.creatures[i].getWidth()/2,
+                            main.creatures[i].getY()+main.creatures[i].getHealth()/2);
+                    push = new Vector(casterPoint, targetPoint);
+                    if (push.getR()<=50&&i!=casterIndex&&main.creatures[i].getMass()!=0){
+                        push.setR(50);
+                    }
+                    else if (push.getR()<=250&&i!=casterIndex&&main.creatures[i].getMass()!=0){
+                        push.setR(12500/(push.getR()*push.getR()));
+                        main.creatures[i].applyForce(new Force(push, 2));
+                    }
+                    System.out.println("Pushing "+main.creatures[i]+" in "+push);
+                }
                 break;
             default:
         }
@@ -46,7 +64,9 @@ public class Spell {
         switch (type){
             case (1): //Огненный шар
                 return 10;
-            case (2): //Лечение (на 20 хп)
+            case (2): //Лечение (на 15 хп)
+                return 80;
+            case (3): //Отталкивание всех вблизи
                 return 20;
             default:
                 return 0;

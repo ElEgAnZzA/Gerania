@@ -178,7 +178,10 @@ public class Creature {
         this.mass = mass;
     }
     public void setHealth(int health){
-        this.health=health;
+        if (health>maxHealth)
+            this.health = maxHealth;
+        else
+            this.health=health;
     }
     public void setMaxHealth(int maxHealth){
         this.maxHealth = maxHealth;
@@ -289,8 +292,8 @@ public class Creature {
         }
         if(this.y<-main.SCREEN_HEIGHT)
             this.kill(main);
-
-        this.applyForce(new Force(this.velocity.getX()*(-0.05), 0, 1));
+        if(hasVerticalCollision)
+            this.applyForce(new Force(this.velocity.getX()*(-0.2), 0, 1));
         }
     public void applyForce(Force force){ //Добавляет новую Force в forces.
         // Если forces (т.е. там 50 элементов <=> kForces = 50) заполнен, то ничего не делает

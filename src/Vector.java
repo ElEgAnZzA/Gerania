@@ -18,7 +18,7 @@ public class Vector {
         this.x = a.getX();
         this.y = a.getY();
     }
-    public Vector(Point a, Point b){
+    public Vector(Point a, Point b){ //Вектор из a в b
         this.x = b.getX()-a.getX();
         this.y = b.getY()-a.getY();
     }
