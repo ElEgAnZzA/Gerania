@@ -1,6 +1,6 @@
 1
-0 700 3000 100
-400 600 playerCharacter.txt
+0 100 3000 100
+400 201 playerCharacter.txt
 0
 1
-900 550
+900 201

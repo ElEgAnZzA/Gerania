@@ -23,7 +23,7 @@ public class CreatureBossScholar extends Creature{
     public void jump(Main main){
         if (!jumping){
             Creature player = main.creatures[main.getPlayerControlledCreatureId()];
-            Vector jump = new Vector(0, -200);
+            Vector jump = new Vector(0, 15);
             this.move(jump);
             jumpMoveDirection = new Vector((player.getX()-this.getX())/200.0,0);
             jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX());
@@ -44,7 +44,7 @@ public class CreatureBossScholar extends Creature{
             int spellId = random.nextInt(3);
             Creature playerCharacter = main.creatures[main.getPlayerControlledCreatureId()];
             Point playerCenter = new Point(playerCharacter.getX() + playerCharacter.getWidth() / 2, playerCharacter.getY() + playerCharacter.getHeight() / 2);
-            Point playerCenterOnScreen = new Point(playerCenter.getX() - main.cameraX, playerCenter.getY() - main.cameraY);
+            Point playerCenterOnScreen = new Point(playerCenter.getX() - main.cameraX, main.SCREEN_HEIGHT - playerCenter.getY() + main.cameraY);
             System.out.println("Boss casting "+ BOSS_SPELLS[spellId]);
             BOSS_SPELLS[spellId].cast(getIndex(), playerCenterOnScreen, main);
             lastTimeUsedSpell = main.endTime;
@@ -86,10 +86,33 @@ public class CreatureBossScholar extends Creature{
         if(this.getY()<-main.SCREEN_HEIGHT)
             this.kill(main);
 
+        if(flip==false&&this.getX()<main.creatures[main.playerControlledCreatureId].getX()){
+            flip = true;
+        }
+        if(flip==true&&this.getX()>main.creatures[main.playerControlledCreatureId].getX()){
+            flip = false;
+        }
+
 
         this.applyForce(new Force(this.velocity.getX()*(-0.01), 0, 1));
 
         this.jump(main);
         this.cast(main);
+    }
+
+    @Override
+    public void kill(Main main){
+        System.out.println("Killing "+this+" index: "+this.getIndex());
+        this.isDead=true;
+        for (int i =this.getIndex(); i<main.kCreatures-1;i++){
+            main.creatures[i] = main.creatures[i+1];
+            main.creatures[i].setIndex(main.creatures[i].getIndex()-1);
+        }
+        if (main.kCreatures<1000)
+            main.creatures[main.kCreatures-1] = main.creatures[main.kCreatures];
+        else
+            main.creatures[main.kCreatures-1]=null;
+        main.kCreatures--;
+        main.hasBoss = false;
     }
 }

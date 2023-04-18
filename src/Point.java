@@ -48,6 +48,11 @@ public class Point {
         double dy = a.y-y;
         return Math.sqrt(dx*dx + dy*dy);
     }
+    public double distanceToSquared(Point a){
+        double dx = a.x-x;
+        double dy = a.y-y;
+        return dx*dx + dy*dy;
+    }
     public Point enlarged(double n){
         return new Point(x*n, y*n);
     }

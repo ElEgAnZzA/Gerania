@@ -1,3 +1,4 @@
+//TODO: 1. Изменить систему координат: а. изменить как рисуется, б. изменить, как считается столкновение, в. изменить гравитацию
 //TODO: 2. Front-end design
 //TODO: 3. Level save
 import javax.imageio.ImageIO;
@@ -29,9 +30,9 @@ public class Main extends JFrame{
     public short kTemporaryArts = 0;
 
     //Игровые константы:
-    public static final int CREATURE_MAX_VELOCITY = 10;
-    public static final Force GRAVITY = new Force(0, 1, -1);
-    private int playerControlledCreatureId = 0;
+    public static final int CREATURE_MAX_VELOCITY = 20;
+    public static final Force GRAVITY = new Force(0, -1, -1);
+    public int playerControlledCreatureId = 0;
 
     //Системные константы:
     public static final int KEYBOARD_INDEX_1 = 49;
@@ -47,6 +48,9 @@ public class Main extends JFrame{
     public static int PAUSE = 27; //Escape
     double cameraX = 0;
     double cameraY = 0;
+    double maxX;
+    boolean hasBoss = false;
+    boolean happyEnd = false;
     Spell[] spells;
     int selectedSpell;
     boolean isPaused = false;
@@ -72,12 +76,14 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-        loadLevel("devTest.txt");
+        loadLevel("devTest2.txt");
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
         spells[1] = new Spell(2);
         spells[2] = new Spell(3);
+        spells[3] = new Spell(4);
+        spells[4] = new Spell(5);
         setSelectedSpell(0);
 
 
@@ -123,32 +129,37 @@ public class Main extends JFrame{
             Scanner levelRead = new Scanner(levelFile);
             kGameObjects = (short)levelRead.nextInt();
             levelRead.nextLine();
+            maxX = 0;
             for (int i = 0; i<kGameObjects; i++){
                 gameObjects[i] = GameObject.stringToGameObject(levelRead.nextLine());
                 log.println("GameObject "+gameObjects[i]+" loaded");
+                if (gameObjects[i].getX()+gameObjects[i].getWidth()>maxX)
+                    maxX = gameObjects[i].getX()+gameObjects[i].getWidth();
             }
 
-            creatures[0] = Creature.stringToCreature(levelRead.nextLine(), this);
+            creatures[0] = Creature.stringToCreature(this, levelRead.nextLine(), 0);
             log.println("Player character "+creatures[0]+" loaded");
 
             kCreatures = (short)(levelRead.nextInt()+1);
             levelRead.nextLine();
             for (int i = 1; i<kCreatures; i++){
-                creatures[i] = Creature.stringToCreature(levelRead.nextLine(), this);
+                creatures[i] = Creature.stringToCreature(this, levelRead.nextLine(), i);
                 log.println("Creature "+creatures[i]+" loaded");
             }
             int bossId = levelRead.nextInt();
-            levelRead.nextLine();
             switch (bossId){
                 case(1):
+                    levelRead.nextLine();
                     String bossString = levelRead.nextLine();
                     String[] parameters = bossString.split(" ");
                     creatures[kCreatures] = new CreatureBossScholar(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), endTime, kCreatures);
                     creatures[kCreatures].applyGravity(GRAVITY);
                     kCreatures++;
+                    hasBoss = true;
                     break;
                 default:
             }
+
             levelRead.close();
             log.println("Level "+fileName+" loaded");
         }
@@ -193,20 +204,23 @@ public class Main extends JFrame{
             g.setColor(Color.GREEN);
             for (int i=0; i<kGameObjects; i++) {
                 if (gameObjects[i].getX() + gameObjects[i].getWidth() > cameraX && gameObjects[i].getX() < cameraX + SCREEN_WIDTH) {
-                    g.drawRect((int) (gameObjects[i].getX() - cameraX), (int) (gameObjects[i].getY() - cameraY), gameObjects[i].getWidth(), gameObjects[i].getHeight());
+                    g.drawRect((int) (gameObjects[i].getX() - cameraX), SCREEN_HEIGHT-(int)(gameObjects[i].getY() - cameraY+gameObjects[i].getHeight()), gameObjects[i].getWidth(), gameObjects[i].getHeight());
                 }
             }
             g.setColor(Color.BLACK);
             for (int i = 0; i< kCreatures; i++){
                 if(creatures[i].getX()+creatures[i].getWidth()>cameraX&&creatures[i].getX()<cameraX+SCREEN_WIDTH) {
-                    g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), (int) (creatures[i].getY() - cameraY), creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                    if(creatures[i].flip==false)
+                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                    else
+                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX + creatures[i].getWidth()), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), -creatures[i].getWidth(), creatures[i].getHeight(), panel);
                     creatures[i].update(main);
                 }
             }
 
             for (int i = 0; i<kTemporaryArts; i++){
                 if(temporaryArts[i].getX()+temporaryArts[i].getWidth()>cameraX&&temporaryArts[i].getX()<cameraX+SCREEN_WIDTH){
-                    g.drawImage(temporaryArts[i].getImage(), (int) (temporaryArts[i].getX() - cameraX), (int) (temporaryArts[i].getY() - cameraY), temporaryArts[i].getWidth(), temporaryArts[i].getHeight(), panel);
+                    g.drawImage(temporaryArts[i].getImage(), (int) (temporaryArts[i].getX() - cameraX), SCREEN_HEIGHT-(int)(temporaryArts[i].getY() - cameraY+temporaryArts[i].getHeight()), temporaryArts[i].getWidth(), temporaryArts[i].getHeight(), panel);
                     temporaryArts[i].update(main, endTime);
                 }
             }
@@ -220,6 +234,9 @@ public class Main extends JFrame{
                     playerMana+=addMana;
             }
 
+            if (creatures[playerControlledCreatureId].getX()>maxX&&hasBoss==false)
+                happyEnd();
+
             if(main.isPaused==true)
                 g.drawString("PAUSED", 10, 10);
             if(gameOver) {
@@ -232,6 +249,9 @@ public class Main extends JFrame{
                 catch(IOException e){
 
                 }
+            }
+            if (happyEnd){
+                //Тут будет поздравление игрока с победой
             }
             while(isPaused||gameOver){
                 try {
@@ -259,13 +279,12 @@ public class Main extends JFrame{
         public void keyPressed(KeyEvent e) {
             if (playerControlledCreatureId>=0&&playerControlledCreatureId<kCreatures){
                 int keyCode = e.getKeyCode();
-                if(keyCode == PLAYER_CREATURE_MOVE_LEFT) {
+                if(keyCode == PLAYER_CREATURE_MOVE_LEFT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10)
                     creatures[playerControlledCreatureId].move(new Vector(-1, 0));
-                }
-                else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT)
+                else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10)
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
                 else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision()) {
-                    creatures[playerControlledCreatureId].move(new Vector(0, -15));
+                    creatures[playerControlledCreatureId].move(new Vector(0, 15));
                     System.out.println("JUMPING");
                     System.out.println(creatures[playerControlledCreatureId].hasVerticalCollision());
                 }
@@ -298,7 +317,7 @@ public class Main extends JFrame{
         @Override
         public void mouseReleased(MouseEvent e) {
             if(main.spells[main.selectedSpell].spellCost()<=playerMana) {
-                main.spells[main.selectedSpell].cast(0, new Point(e.getX(), e.getY()), main);
+                main.spells[main.selectedSpell].cast(playerControlledCreatureId, new Point(e.getX(), e.getY()), main);
                 playerMana-=main.spells[main.selectedSpell].spellCost();
                 System.out.println(playerMana);
             }
@@ -328,6 +347,10 @@ public class Main extends JFrame{
         public void gameOver(){
             gameOver = true;
             repaint();
+        }
+        public void happyEnd(){
+            happyEnd = true;
+            gameOver();
         }
     }
 }

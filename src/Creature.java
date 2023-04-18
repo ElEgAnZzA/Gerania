@@ -36,7 +36,8 @@ public class Creature {
     private boolean hasVerticalCollision = false;
     private boolean hasHorizontalCollision = false;
     private boolean diesOnCollision = false;
-    private boolean isDead = false;
+    public boolean isDead = false;
+    public boolean flip = false;
     double timePassedModifier = 0;
 
     public Creature(long time, int index){
@@ -256,6 +257,7 @@ public class Creature {
         lastY = this.getY();
 
         if(!isControlled&&movementPattern!=null){
+//            System.out.println(this.index+" | "+ main.kCreatures);
             this.move(movementPattern.getNextAction(main, this));
         }
         if(mass!=0) {
@@ -292,8 +294,17 @@ public class Creature {
         }
         if(this.y<-main.SCREEN_HEIGHT)
             this.kill(main);
+
+        if(flip==false&&this.getX()<main.creatures[main.playerControlledCreatureId].getX()){
+            flip = true;
+        }
+        if(flip==true&&this.getX()>main.creatures[main.playerControlledCreatureId].getX()){
+            flip = false;
+        }
+
         if(hasVerticalCollision)
-            this.applyForce(new Force(this.velocity.getX()*(-0.2), 0, 1));
+            if(isControlled)
+                this.applyForce(new Force(this.velocity.getX()*(-0.2), 0, 1));
         }
     public void applyForce(Force force){ //Добавляет новую Force в forces.
         // Если forces (т.е. там 50 элементов <=> kForces = 50) заполнен, то ничего не делает
@@ -429,7 +440,7 @@ public class Creature {
         }
     }
     private void resolveCreatureCollision(Main main, int target){
-        if(main.endTime- lastInteractionTime >1000) {
+        if(main.endTime- lastInteractionTime >250) {
             if (this.creatureCollisionInteraction != null) {
                 this.creatureCollisionInteraction.interact(main, this, target);
                 lastInteractionTime = main.endTime;
@@ -488,7 +499,7 @@ public class Creature {
                 this.applyForce(new Force(main.GRAVITY.getX()*gravityCoefficient*this.mass, main.GRAVITY.getY()*gravityCoefficient*this.mass, -1));
             scanner.nextLine();
             this.loadSprite(scanner.nextLine());
-            this.setMovementPattern(MovementPattern.movementPatternFromString(scanner.nextLine()));
+            this.setMovementPattern(MovementPattern.movementPatternFromString(main, scanner.nextLine()));
             main.log.println("loaded MovementPattern "+getMovementPattern());
             this.setCreatureCollisionInteraction(Interaction.interactionFromString(scanner.nextLine()));
             main.log.println("loaded Interaction (for collision with Creatures) "+getCreatureCollisionInteraction());
@@ -499,9 +510,9 @@ public class Creature {
             e.printStackTrace();
         }
     }
-    public static Creature stringToCreature(String string, Main main){
+    public static Creature stringToCreature(Main main, String string, int index){
         String[] parameters = string.split(" ");
-        Creature res = new Creature(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), 0, 0, 0, main.endTime, main.kCreatures);
+        Creature res = new Creature(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), 0, 0, 0, main.endTime, index);
         main.log.println("loading creature "+res);
         res.loadCreature(parameters[2], main);
         return res;

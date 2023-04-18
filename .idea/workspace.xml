@@ -4,112 +4,112 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Finally fixed the annoying bug, game is now playable">
-      <change afterPath="$PROJECT_DIR$/src/TemporaryArt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681658867680.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681658942066.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681658952617.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681659060781.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681659519921.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681659603170.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661331322.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661460308.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661473522.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661551169.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661652023.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661679913.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661711431.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661726140.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661741228.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661764528.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661797671.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681661839480.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681743854268.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681743919850.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681743946668.txt" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Before I try to remake the level loading system">
+      <change afterPath="$PROJECT_DIR$/src/art/bat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/batSonicBall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/goblin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/homingBall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/magicBrick.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/skeleton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/spider.aseprite" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/spider.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/bat.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/batSonicBall.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/goblin.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/homingBall.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/magicBrick.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/skeleton.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/creatures/spider.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/devTest2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754565302.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754733362.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754748933.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754760070.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754807855.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681754829210.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681845989826.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681846144664.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681846224994.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847001257.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847115891.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847239806.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847512446.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847570548.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847761416.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681847848774.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848380146.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848404805.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848455065.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848487394.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848516448.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848570556.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848621432.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848666744.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848702312.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848745973.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681848778596.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681849067298.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681853416488.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681853471182.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854273388.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854328980.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854418133.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854444253.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854468952.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854483417.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854580483.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854602370.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681854613603.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681855760873.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681855826437.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681855852393.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681855876972.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857290543.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857311397.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857326293.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857341574.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857353500.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857371759.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857382092.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857809213.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681857846004.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681859481996.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681859512853.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681859807735.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681859852799.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860065887.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860219309.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860298092.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860371992.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860445043.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860513348.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860551191.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860559851.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860622521.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860634501.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860893750.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860925564.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860936909.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681860956766.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681861102026.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681861111768.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681861123373.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681861180432.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovementPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/art/bossScholar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/art/bossScholar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/levels/devTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680864320053.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680864496694.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680864521071.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680864686203.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680864697315.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680865065198.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680865293107.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680865316461.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1680865367776.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681216791219.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681216898971.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681217027622.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681217181856.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681217373380.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681217394453.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218117751.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218155809.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218211733.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218223140.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218265824.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218294284.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218365629.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218395129.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218412898.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218463973.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218518368.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218529105.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218747386.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218837858.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218878133.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218960818.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681218977453.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219145475.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219245749.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219270394.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219415230.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219493632.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219535545.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219549803.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219566608.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219633450.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219647429.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219672920.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219704599.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219769932.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681219781470.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220235730.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220248447.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220368074.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220388808.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220420093.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220438217.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220542815.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220582979.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220591766.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220619009.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220675805.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220724932.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220739269.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220776039.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220800894.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220824393.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220840839.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220905581.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681220944913.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221019895.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221101640.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221201409.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221250229.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221266415.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221438539.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221496561.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681221577542.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681524374619.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681524459141.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681524510384.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681524956711.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logs/1681658775990.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logs/1681658808399.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logs/1681658826276.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logs/1681658851849.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,6 +156,20 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Gerania" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -221,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681659092033</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Before I try to remake the level loading system">
+      <created>1681753891745</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681753891745</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,7 +283,8 @@
     <MESSAGE value="Before I redo how this works" />
     <MESSAGE value="Old game, new problems" />
     <MESSAGE value="Finally fixed the annoying bug, game is now playable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finally fixed the annoying bug, game is now playable" />
+    <MESSAGE value="Before I try to remake the level loading system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Before I try to remake the level loading system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
