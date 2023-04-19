@@ -4,25 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Before I try to remake the level loading system">
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885215018.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885258330.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885282944.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885297017.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885341551.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885364707.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885394529.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885429907.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885599664.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681885727652.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Content added, time to fix bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatures/homingBall.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/homingBall.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/devTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/devTest2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +77,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676576877498</updated>
-      <workItem from="1681885903701" duration="2904000" />
+      <workItem from="1681885903701" duration="4581000" />
     </task>
     <task id="LOCAL-00001" summary="Fully made class Vector ig (probably not)">
       <created>1676580372660</created>
@@ -157,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681753891745</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Content added, time to fix bugs">
+      <created>1681889683967</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681889683967</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +194,8 @@
     <MESSAGE value="Old game, new problems" />
     <MESSAGE value="Finally fixed the annoying bug, game is now playable" />
     <MESSAGE value="Before I try to remake the level loading system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before I try to remake the level loading system" />
+    <MESSAGE value="Content added, time to fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Content added, time to fix bugs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -350,6 +350,8 @@ public class Creature {
                 res = 3;
             }
         }
+        if(this.index == 0)
+            System.out.println (this+" is colliding with GameObject "+gameObject+"; collision type "+res);
         return res;
     }
 
@@ -358,6 +360,8 @@ public class Creature {
         short kCollisions = 0;
         this.setX(this.getX()+this.velocity.getX()*timePassedModifier);
         this.setY(this.getY()+this.velocity.getY()*timePassedModifier);
+        this.hasVerticalCollision = false;
+        this.hasHorizontalCollision = false;
         for (short i = 0; i<main.kGameObjects&&!isDead; i++){
             int res = checkGameObjectCollision(main.gameObjects[i]);
             if (res == 1) {//Горизонтальное столкновение

@@ -76,7 +76,7 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-        loadLevel("2.txt");
+        loadLevel("1.txt");
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
