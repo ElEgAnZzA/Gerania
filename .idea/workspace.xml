@@ -5,111 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Before I try to remake the level loading system">
-      <change afterPath="$PROJECT_DIR$/src/art/bat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/batSonicBall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/goblin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/homingBall.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/magicBrick.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/skeleton.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/spider.aseprite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/spider.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/bat.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/batSonicBall.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/goblin.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/homingBall.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/magicBrick.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/skeleton.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/creatures/spider.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/levels/2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/levels/devTest2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754565302.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754733362.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754748933.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754760070.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754807855.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681754829210.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681845989826.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681846144664.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681846224994.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847001257.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847115891.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847239806.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847512446.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847570548.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847761416.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681847848774.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848380146.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848404805.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848455065.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848487394.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848516448.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848570556.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848621432.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848666744.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848702312.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848745973.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681848778596.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681849067298.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681853416488.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681853471182.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854273388.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854328980.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854418133.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854444253.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854468952.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854483417.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854580483.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854602370.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681854613603.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681855760873.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681855826437.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681855852393.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681855876972.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857290543.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857311397.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857326293.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857341574.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857353500.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857371759.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857382092.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857809213.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681857846004.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681859481996.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681859512853.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681859807735.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681859852799.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860065887.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860219309.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860298092.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860371992.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860445043.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860513348.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860551191.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860559851.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860622521.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860634501.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860893750.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860925564.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860936909.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681860956766.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681861102026.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681861111768.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681861123373.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1681861180432.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885215018.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885258330.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885282944.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885297017.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885341551.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885364707.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885394529.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885429907.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885599664.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1681885727652.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovementPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/art/bossScholar.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/art/bossScholar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/creatures/homingBall.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/homingBall.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/levels/devTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681658775990.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681658808399.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681658826276.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1681658851849.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/devTest2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,14 +61,15 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -178,6 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1676576877498</updated>
+      <workItem from="1681885903701" duration="2904000" />
     </task>
     <task id="LOCAL-00001" summary="Fully made class Vector ig (probably not)">
       <created>1676580372660</created>
@@ -244,6 +159,9 @@
     </task>
     <option name="localTasksCounter" value="10" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -76,7 +76,7 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-        loadLevel("devTest2.txt");
+        loadLevel("2.txt");
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
@@ -193,13 +193,6 @@ public class Main extends JFrame{
                 cameraX-=5;
             }
             super.paint(g);
-            g.setColor(Color.RED);
-            g.fillRect(SCREEN_WIDTH-250, 25, 200*creatures[playerControlledCreatureId].getHealth()/creatures[playerControlledCreatureId].getMaxHealth(), 20);
-            g.setColor(Color.CYAN);
-            g.fillRect(SCREEN_WIDTH-250, 50, (int)(200*playerMana/MAX_PLAYER_MANA), 20);
-            g.setColor(Color.BLACK);
-            g.drawRect(SCREEN_WIDTH-250, 25, 200, 20);
-            g.drawRect(SCREEN_WIDTH-250, 50, 200, 20);
 
             g.setColor(Color.GREEN);
             for (int i=0; i<kGameObjects; i++) {
@@ -233,6 +226,13 @@ public class Main extends JFrame{
                 else
                     playerMana+=addMana;
             }
+            g.setColor(Color.RED);
+            g.fillRect(SCREEN_WIDTH-250, 25, 200*creatures[playerControlledCreatureId].getHealth()/creatures[playerControlledCreatureId].getMaxHealth(), 20);
+            g.setColor(Color.CYAN);
+            g.fillRect(SCREEN_WIDTH-250, 50, (int)(200*playerMana/MAX_PLAYER_MANA), 20);
+            g.setColor(Color.BLACK);
+            g.drawRect(SCREEN_WIDTH-250, 25, 200, 20);
+            g.drawRect(SCREEN_WIDTH-250, 50, 200, 20);
 
             if (creatures[playerControlledCreatureId].getX()>maxX&&hasBoss==false)
                 happyEnd();

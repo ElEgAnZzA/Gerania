@@ -23,7 +23,7 @@ public class CreatureBossScholar extends Creature{
     public void jump(Main main){
         if (!jumping){
             Creature player = main.creatures[main.getPlayerControlledCreatureId()];
-            Vector jump = new Vector(0, 15);
+            Vector jump = new Vector(0, 10);
             this.move(jump);
             jumpMoveDirection = new Vector((player.getX()-this.getX())/200.0,0);
             jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX());
@@ -35,6 +35,7 @@ public class CreatureBossScholar extends Creature{
             jumping = true;
         }
         else{
+            jumpMoveDirection.setX(jumpMoveDirection.getX()*0.9);
             this.move(jumpMoveDirection);
         }
     }

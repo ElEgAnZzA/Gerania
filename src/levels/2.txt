@@ -12,5 +12,24 @@
 3400 800 3000 2800
 3400 100 3000 100
 200 200 playerCharacter.txt
-0
-0
+18
+300 100 skeleton.txt
+550 100 goblin.txt
+600 100 skeleton.txt
+1350 100 goblin.txt
+1400 100 goblin.txt
+1700 150 spider.txt
+1900 300 spider.txt
+2000 250 bat.txt
+2000 200 spider.txt
+2100 100 spider.txt
+2800 100 skeleton.txt
+3000 100 skeleton.txt
+3350 200 goblin.txt
+3600 200 goblin.txt
+3650 200 goblin.txt
+4100 200 goblin.txt
+4150 200 goblin.txt
+4200 200 goblin.txt
+1
+4900 200

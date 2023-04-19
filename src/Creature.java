@@ -440,7 +440,7 @@ public class Creature {
         }
     }
     private void resolveCreatureCollision(Main main, int target){
-        if(main.endTime- lastInteractionTime >250) {
+        if(main.endTime- lastInteractionTime >500) {
             if (this.creatureCollisionInteraction != null) {
                 this.creatureCollisionInteraction.interact(main, this, target);
                 lastInteractionTime = main.endTime;
