@@ -222,6 +222,9 @@ public class Creature {
     }
 
     public void setSprite(Image sprite){this.sprite=sprite;}
+    public void setLastInteractionTime (long time){
+        this.lastInteractionTime = time;
+    }
 
     //Внутренние функции:
     public void forcesPop(int num){ //Убирает элемент с индексом num из forces, сдвигает остаток массива влево, чтобы не было пропусков

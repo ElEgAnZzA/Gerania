@@ -52,12 +52,10 @@ public class Spell {
                     targetPoint = new Point(main.creatures[i].getX()+main.creatures[i].getWidth()/2,
                             main.creatures[i].getY()+main.creatures[i].getHealth()/2);
                     push = new Vector(casterPoint, targetPoint);
-                    if (push.getR()<=50&&i!=casterIndex&&main.creatures[i].getMass()!=0){
-                        push.setR(50);
-                    }
-                    else if (push.getR()<=250&&i!=casterIndex&&main.creatures[i].getMass()!=0){
-                        push.setR(12500/(push.getR()*push.getR()));
+                    if (push.getR()<=300&&i!=casterIndex&&main.creatures[i].getMass()!=0) {
+                        push.setR(20);
                         main.creatures[i].applyForce(new Force(push, 2));
+                        main.creatures[i].applyForce(new Force(push.x(-0.5), 4));
                     }
                     System.out.println("Pushing "+main.creatures[i]+" in "+push);
                 }

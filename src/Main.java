@@ -33,6 +33,7 @@ public class Main extends JFrame{
     public static final int CREATURE_MAX_VELOCITY = 20;
     public static final Force GRAVITY = new Force(0, -1, -1);
     public int playerControlledCreatureId = 0;
+    public Background background;
 
     //Системные константы:
     public static final int KEYBOARD_INDEX_1 = 49;
@@ -58,8 +59,14 @@ public class Main extends JFrame{
     static final int MAX_PLAYER_MANA = 150;
     double playerMana = MAX_PLAYER_MANA;
     public PrintStream log;
-    public Main(String title){
+    public Main(String title, String level){
         super(title);
+        try{
+            background = new Background(0, 0, ImageIO.read(new File("./src/art/background.png")));
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
 
         try{
             log = new PrintStream(new File("./src/logs/"+endTime+".txt"));
@@ -76,7 +83,7 @@ public class Main extends JFrame{
         panel.setFocusable(true);
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
-        loadLevel("1.txt");
+        loadLevel(level);
 
         spells = new Spell[10];
         spells[0] = new Spell(1);
@@ -93,7 +100,7 @@ public class Main extends JFrame{
         setVisible(true);//Должно быть в самом конце, т.к. вызывает repaint(), а значит, начинает игровой цикл
     }
     public static void main(String[] args) {
-        Main main = new Main("Gerania");
+        Main main = new Main("Gerania", args[0]+".txt");
     }
     public void setSelectedSpell(int selectedSpell){
         this.selectedSpell=selectedSpell;
@@ -186,28 +193,28 @@ public class Main extends JFrame{
         public void paint(Graphics g){
             main.beginningTime = endTime;
             main.endTime = System.currentTimeMillis();
-            if (creatures[playerControlledCreatureId].getX()-cameraX>3*SCREEN_WIDTH/5){
-                cameraX+=5;
-            }
-            if (cameraX>0&&(creatures[playerControlledCreatureId].getX()-cameraX<2*SCREEN_WIDTH/5)){
-                cameraX-=5;
-            }
             super.paint(g);
 
-            g.setColor(Color.GREEN);
+
+            main.background.move(main);
+            g.drawImage(main.background.getImage(), (int)(main.background.getX()-cameraX), SCREEN_HEIGHT-main.background.getHeight(), panel);
+
+            g.setColor(Color.BLACK);
             for (int i=0; i<kGameObjects; i++) {
                 if (gameObjects[i].getX() + gameObjects[i].getWidth() > cameraX && gameObjects[i].getX() < cameraX + SCREEN_WIDTH) {
-                    g.drawRect((int) (gameObjects[i].getX() - cameraX), SCREEN_HEIGHT-(int)(gameObjects[i].getY() - cameraY+gameObjects[i].getHeight()), gameObjects[i].getWidth(), gameObjects[i].getHeight());
+                    g.fillRect((int) (gameObjects[i].getX() - cameraX), SCREEN_HEIGHT-(int)(gameObjects[i].getY() - cameraY+gameObjects[i].getHeight()), gameObjects[i].getWidth(), gameObjects[i].getHeight());
                 }
             }
-            g.setColor(Color.BLACK);
             for (int i = 0; i< kCreatures; i++){
                 if(creatures[i].getX()+creatures[i].getWidth()>cameraX&&creatures[i].getX()<cameraX+SCREEN_WIDTH) {
                     if(creatures[i].flip==false)
                         g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), creatures[i].getWidth(), creatures[i].getHeight(), panel);
                     else
                         g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX + creatures[i].getWidth()), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), -creatures[i].getWidth(), creatures[i].getHeight(), panel);
-                    creatures[i].update(main);
+                    if (isPaused||gameOver)
+                        creatures[i].setLastInteractionTime(endTime);
+                    else
+                        creatures[i].update(main);
                 }
             }
 
@@ -217,8 +224,14 @@ public class Main extends JFrame{
                     temporaryArts[i].update(main, endTime);
                 }
             }
+            if ((creatures[playerControlledCreatureId].getX()-cameraX>3*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
+                cameraX+=5;
+            }
+            if (cameraX>0&&(creatures[playerControlledCreatureId].getX()-cameraX<2*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
+                cameraX-=5;
+            }
 
-            if(playerMana<MAX_PLAYER_MANA){
+            if(playerMana<MAX_PLAYER_MANA&&!(isPaused||gameOver)){
                 double addMana = (endTime-beginningTime)/150.0;
                 if (playerMana+addMana>MAX_PLAYER_MANA){
                     playerMana=MAX_PLAYER_MANA;
@@ -253,16 +266,11 @@ public class Main extends JFrame{
             if (happyEnd){
                 //Тут будет поздравление игрока с победой
             }
-            while(isPaused||gameOver){
-                try {
-                    TimeUnit.MILLISECONDS.sleep(100);
-                }
-                catch (java.lang.InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
+
+
+
             try{
-                TimeUnit.MILLISECONDS.sleep(100);
+                TimeUnit.MILLISECONDS.sleep(50);
             }
             catch (InterruptedException e){
                 e.printStackTrace();
