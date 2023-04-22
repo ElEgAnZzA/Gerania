@@ -1,0 +1,112 @@
+loading level arena.txt:
+GameObjects cleared
+Creatures cleared
+TemporaryArts cleared
+GameObject GameObject at:0.0 0.0; Width:3000; Height:200 loaded
+GameObject GameObject at:0.0 100.0; Width:100; Height:3000 loaded
+GameObject GameObject at:0.0 2900.0; Width:100; Height:3000 loaded
+loading creature Creature at:800.0 201.0; Width:0; Height:0
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 5 damage
+loaded Interaction (for collision with GameObjects) null
+Player character Creature at:800.0 201.0; Width:16; Height:64 loaded
+Level arena.txt loaded
+loaded MovementPattern MPSequence@36657d35
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@5a381e33
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@6e4d910c
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@141aa6a7
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@29ed40ef
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@29cdc614
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@72839307
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) Interaction: deal 15 damage in a 160 by 16 box
+loaded MovementPattern MPSequence@6d574667
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@723512a6
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@3e69b3be
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@e122b3f
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@79e25fb
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@92a5d8e
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@5c5c118c
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@3c472a7
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@1f8a78b3
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@14054d65
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@5d7cdf17
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@1978a264
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@4e793463
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@4a4e0866
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@3442d1cc
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@17eb8732
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@7d1fe6ca
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@3f94357e
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100
+loaded MovementPattern MPSequence@2962613d
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@661508c8
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100
+loaded MovementPattern MPSequence@765b59e9
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100
+loaded MovementPattern MPSequence@538e7140
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@72fa35dd
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) Interaction: deal 15 damage in a 160 by 16 box
+loaded MovementPattern MPSequence@7d56651c
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100
+loaded MovementPattern MPSequence@33a291e8
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) Interaction: deal 15 damage in a 160 by 16 box
+loaded MovementPattern MPSequence@21ae2efe
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100

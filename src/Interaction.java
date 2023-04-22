@@ -1,3 +1,8 @@
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Interaction {
     public Interaction(){
 
@@ -89,11 +94,14 @@ class InteractionBoom extends Interaction{
         Point casterCenter = new Point(caster.getX()+caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
         Creature explosion = new Creature(casterCenter.getX()-radius, casterCenter.getY()-radius, 2*radius, 2*radius, 0, 0, mainGame.kCreatures);
         explosion.setDiesOnCollision(true);
-        //explosion.loadSprite();
         explosion.setMaxHealth(-1);
         explosion.setCreatureCollisionInteraction(new InteractionHurt(damage));
         mainGame.creatures[mainGame.kCreatures] = explosion;
         mainGame.kCreatures++;
+        TemporaryArt boom = new TemporaryArt(casterCenter.getX() - radius, casterCenter.getY() - radius, radius*2, radius*2, false, 200,
+                mainGame.endTime, mainGame.kTemporaryArts, new File("./src/art/explosion.png"));
+        mainGame.temporaryArts[mainGame.kTemporaryArts] = boom;
+        mainGame.kTemporaryArts++;
     }
     @Override
     public String toString(){
@@ -112,13 +120,17 @@ class InteractionLightning extends Interaction{
     }
     public void interact(MainGame mainGame, Creature caster, int target){
         Point casterCenter = new Point(caster.getX()+caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
-        Creature explosion = new Creature(casterCenter.getX()-width/2, casterCenter.getY()-height/2, width, height, 0, 0, mainGame.kCreatures);
-        explosion.setDiesOnCollision(true);
+        Creature ligtningStrike = new Creature(casterCenter.getX()-width/2, casterCenter.getY()-height/2, width, height, 0, 0, mainGame.kCreatures);
+        ligtningStrike.setDiesOnCollision(true);
         //explosion.loadSprite();
-        explosion.setMaxHealth(-1);
-        explosion.setCreatureCollisionInteraction(new InteractionHurt(damage));
-        mainGame.creatures[mainGame.kCreatures] = explosion;
+        ligtningStrike.setMaxHealth(-1);
+        ligtningStrike.setCreatureCollisionInteraction(new InteractionHurt(damage));
+        mainGame.creatures[mainGame.kCreatures] = ligtningStrike;
         mainGame.kCreatures++;
+        TemporaryArt lightning = new TemporaryArt(casterCenter.getX() - width / 2, casterCenter.getY() - height / 2, width, height, false, 200,
+                    mainGame.endTime, mainGame.kTemporaryArts, new File("./src/art/lightning.png"));
+        mainGame.temporaryArts[mainGame.kTemporaryArts] = lightning;
+        mainGame.kTemporaryArts++;
     }
     @Override
     public String toString(){

@@ -2,90 +2,93 @@ loading level 1.txt:
 GameObjects cleared
 Creatures cleared
 TemporaryArts cleared
-GameObject GameObject at:0.0 50.0; Width:600; Height:50 loaded
-GameObject GameObject at:600.0 50.0; Width:120; Height:125 loaded
+GameObject GameObject at:0.0 0.0; Width:600; Height:100 loaded
+GameObject GameObject at:600.0 0.0; Width:120; Height:175 loaded
 GameObject GameObject at:600.0 250.0; Width:120; Height:300 loaded
-GameObject GameObject at:720.0 50.0; Width:400; Height:50 loaded
+GameObject GameObject at:720.0 0.0; Width:400; Height:100 loaded
 GameObject GameObject at:845.0 130.0; Width:75; Height:30 loaded
 GameObject GameObject at:970.0 160.0; Width:75; Height:30 loaded
-GameObject GameObject at:1120.0 50.0; Width:120; Height:200 loaded
-GameObject GameObject at:1240.0 50.0; Width:800; Height:50 loaded
-GameObject GameObject at:2040.0 50.0; Width:100; Height:125 loaded
-GameObject GameObject at:2140.0 50.0; Width:100; Height:200 loaded
-GameObject GameObject at:2240.0 50.0; Width:1600; Height:50 loaded
+GameObject GameObject at:1120.0 0.0; Width:120; Height:250 loaded
+GameObject GameObject at:1240.0 0.0; Width:800; Height:100 loaded
+GameObject GameObject at:2040.0 0.0; Width:100; Height:175 loaded
+GameObject GameObject at:2140.0 0.0; Width:100; Height:250 loaded
+GameObject GameObject at:2240.0 0.0; Width:1600; Height:100 loaded
 loading creature Creature at:200.0 200.0; Width:0; Height:0
 loaded MovementPattern null
-loaded Interaction (for collision with Creatures) null
+loaded Interaction (for collision with Creatures) Interaction: deal 5 damage
 loaded Interaction (for collision with GameObjects) null
 Player character Creature at:200.0 200.0; Width:16; Height:64 loaded
 loading creature Creature at:1350.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@4501b7af
+loaded MovementPattern MPSequence@5cbc8a50
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:1350.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:1400.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@61832929
+loaded MovementPattern MPSequence@3a8b377b
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:1400.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:2300.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@3ffc5af1
+loaded MovementPattern MPSequence@2bc97e13
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:2300.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:2350.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@26653222
+loaded MovementPattern MPSequence@698765bc
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:2350.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:2400.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@68c4039c
+loaded MovementPattern MPSequence@666f31dd
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:2400.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:2700.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@59f99ea
+loaded MovementPattern MPSequence@1b372f49
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:2700.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3000.0 100.0; Width:0; Height:0
-loaded MovementPattern MPFollow@47c62251
+loaded MovementPattern MPFollow@48d8cbc
 loaded Interaction (for collision with Creatures) Interaction: deal 30 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3000.0 100.0; Width:30; Height:28 loaded
 loading creature Creature at:3050.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@66a3ffec
+loaded MovementPattern MPSequence@332a649b
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3050.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3100.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@1e88b3c
+loaded MovementPattern MPSequence@2018f0e8
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3100.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3500.0 100.0; Width:0; Height:0
-loaded MovementPattern MPFollow@3bfdc050
+loaded MovementPattern MPFollow@7317a81e
 loaded Interaction (for collision with Creatures) Interaction: deal 30 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3500.0 100.0; Width:30; Height:28 loaded
 loading creature Creature at:3550.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@5e3a8624
+loaded MovementPattern MPSequence@1f95c2b7
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3550.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3600.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@91161c7
+loaded MovementPattern MPSequence@a6cc5e3
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3600.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3650.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@6a4f787b
+loaded MovementPattern MPSequence@2c30b5d3
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3650.0 100.0; Width:30; Height:32 loaded
 loading creature Creature at:3700.0 100.0; Width:0; Height:0
-loaded MovementPattern MPSequence@6a41eaa2
+loaded MovementPattern MPSequence@2a11481d
 loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
 loaded Interaction (for collision with GameObjects) null
 Creature Creature at:3700.0 100.0; Width:30; Height:32 loaded
 Level 1.txt loaded
+loaded MovementPattern MPSequence@4e12a5d6
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null

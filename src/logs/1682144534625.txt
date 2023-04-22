@@ -1,0 +1,40 @@
+loading level arena.txt:
+GameObjects cleared
+Creatures cleared
+TemporaryArts cleared
+GameObject GameObject at:0.0 0.0; Width:3000; Height:200 loaded
+GameObject GameObject at:0.0 100.0; Width:100; Height:3000 loaded
+GameObject GameObject at:0.0 2900.0; Width:100; Height:3000 loaded
+loading creature Creature at:800.0 201.0; Width:0; Height:0
+loaded MovementPattern null
+loaded Interaction (for collision with Creatures) Interaction: deal 5 damage
+loaded Interaction (for collision with GameObjects) null
+Player character Creature at:800.0 201.0; Width:16; Height:64 loaded
+Level arena.txt loaded
+loaded MovementPattern MPSequence@402a66af
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) Interaction: deal 15 damage in a 160 by 16 box
+loaded MovementPattern MPSequence@7ac1641c
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100
+loaded MovementPattern MPSequence@5d7cdf17
+loaded Interaction (for collision with Creatures) Interaction: deal 15 damage
+loaded Interaction (for collision with GameObjects) Interaction: create 5 ice spikes, each dealing 10 damage
+loaded MovementPattern MPSequence@4f3acf7f
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@b16a04b
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@4e793463
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@cff2908
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@5698831f
+loaded Interaction (for collision with Creatures) Interaction: deal 10 damage
+loaded Interaction (for collision with GameObjects) null
+loaded MovementPattern MPSequence@45452c81
+loaded Interaction (for collision with Creatures) Interaction: deal 20 damage in radius of 100
+loaded Interaction (for collision with GameObjects) Interaction: deal 20 damage in radius of 100

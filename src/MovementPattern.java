@@ -84,6 +84,7 @@ class MPFollow extends MovementPattern{
 class MPFollowCast extends MPFollow{
     private long lastTimeCast;
     private final Spell spell;
+    private static final int CAST_COOLDOWN = 700;
     public MPFollowCast(Creature target, int speed, int spellId, long time){
         super(target, speed);
         this.spell = new Spell(spellId);
@@ -97,7 +98,7 @@ class MPFollowCast extends MPFollow{
         Vector targetVector = new Vector(casterPoint, targetPoint);
         targetVector.setR(speed);
         this.nextAction = targetVector;
-        if(mainGame.endTime-lastTimeCast>2000) {
+        if(mainGame.endTime-lastTimeCast>=CAST_COOLDOWN) {
             System.out.println(spell);
             Point imaginaryClick = new Point(caster.getX() - mainGame.cameraX, MainGame.SCREEN_HEIGHT - caster.getY() + mainGame.cameraY);
             spell.cast(caster.getIndex(), imaginaryClick, mainGame);

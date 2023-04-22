@@ -41,8 +41,8 @@ public class MainGame extends JFrame{
     //Системно-игровые неконстанты:
     long endTime = System.currentTimeMillis();
     long beginningTime = System.currentTimeMillis();
-    public static int PLAYER_CREATURE_MOVE_LEFT = 37; //Код стрелки влево на клавиатуре
-    public static int PLAYER_CREATURE_MOVE_RIGHT = 39; //Код стрелки вправо на клавиатуре
+    public static int PLAYER_CREATURE_MOVE_LEFT = 65; //Код A на клавиатуре
+    public static int PLAYER_CREATURE_MOVE_RIGHT = 68; //Код D на клавиатуре
     public static int PLAYER_CREATURE_JUMP = 32; //Код пробела
     public static int PAUSE = 27; //Escape
     double cameraX = 0;
@@ -195,7 +195,7 @@ public class MainGame extends JFrame{
                 try{
                     TimeUnit.SECONDS.sleep(5);
                     this.mainGame.setVisible(false);
-                    Main.main(null);
+                    ChooseLevel.main(null);
                 }
                 catch (InterruptedException e){
                     e.printStackTrace();
@@ -257,7 +257,12 @@ public class MainGame extends JFrame{
                 happyEnd();
 
             if(mainGame.isPaused)
-                g.drawString("PAUSED", 10, 10);
+                try{
+                    g.drawImage(ImageIO.read(new File("./src/art/paused.png")), (SCREEN_WIDTH-800)/2, (SCREEN_HEIGHT-600)/2, panel);
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
             if (happyEnd){
                 g.setColor(Color.WHITE);
                 g.fillRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -301,18 +306,18 @@ public class MainGame extends JFrame{
         public void keyPressed(KeyEvent e) {
             if (playerControlledCreatureId>=0&&playerControlledCreatureId<kCreatures){
                 int keyCode = e.getKeyCode();
-                if(keyCode == PLAYER_CREATURE_MOVE_LEFT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10)
+                if(keyCode == PLAYER_CREATURE_MOVE_LEFT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10&&!(gameOver||happyEnd||isPaused))
                     creatures[playerControlledCreatureId].move(new Vector(-1, 0));
-                else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10)
+                else if (keyCode == PLAYER_CREATURE_MOVE_RIGHT&&Math.abs(creatures[playerControlledCreatureId].getVelocity().getX())<10&&!(gameOver||happyEnd||isPaused))
                     creatures[playerControlledCreatureId].move(new Vector(1,0));
-                else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision()) {
+                else if (keyCode == PLAYER_CREATURE_JUMP&&creatures[playerControlledCreatureId].hasVerticalCollision()&&!(gameOver||happyEnd||isPaused)) {
                     creatures[playerControlledCreatureId].move(new Vector(0, 15));
                     System.out.println("JUMPING");
                     System.out.println(creatures[playerControlledCreatureId].hasVerticalCollision());
                 }
                 else if (keyCode == PAUSE)
                     isPaused = !isPaused;
-                else if (keyCode>=KEYBOARD_INDEX_1&&keyCode<=KEYBOARD_INDEX_9){
+                else if (keyCode>=KEYBOARD_INDEX_1&&keyCode<=KEYBOARD_INDEX_9&&!(gameOver||happyEnd||isPaused)){
                     int spellId = keyCode-KEYBOARD_INDEX_1;
                     if (spells[spellId]!=null)
                         mainGame.setSelectedSpell(spellId);
@@ -338,7 +343,7 @@ public class MainGame extends JFrame{
 
         @Override
         public void mouseReleased(MouseEvent e) {
-            if(mainGame.spells[mainGame.selectedSpell].spellCost()<=playerMana) {
+            if(mainGame.spells[mainGame.selectedSpell].spellCost()<=playerMana&&!(gameOver||happyEnd||isPaused)) {
                 mainGame.spells[mainGame.selectedSpell].cast(playerControlledCreatureId, new Point(e.getX(), e.getY()), mainGame);
                 playerMana-= mainGame.spells[mainGame.selectedSpell].spellCost();
                 System.out.println(playerMana);

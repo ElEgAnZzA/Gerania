@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Main extends JFrame {
+public class ChooseLevel extends JFrame {
     private static final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = (int)dim.getWidth();
     public static final int SCREEN_HEIGHT = (int)dim.getHeight();
@@ -12,7 +12,7 @@ public class Main extends JFrame {
     public static final int BUTTON_HEIGHT = 20;
     public static final int BUTTON_INTERVAL = (HEIGHT-3*BUTTON_HEIGHT)/5;
 
-    public Main(String title) {
+    public ChooseLevel(String title) {
         super(title);
         setBounds((SCREEN_WIDTH-WIDTH)/2, (SCREEN_HEIGHT-HEIGHT)/2, WIDTH, HEIGHT);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -55,6 +55,6 @@ public class Main extends JFrame {
         setVisible(true);
     }
     public static void main(String[] args) {
-        Main main = new Main("Gerania: choose the level");
+        ChooseLevel chooseLevel = new ChooseLevel("Gerania: choose the level");
     }
 }
