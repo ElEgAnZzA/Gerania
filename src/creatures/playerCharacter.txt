@@ -3,5 +3,5 @@
 0 1 1
 playerCharacterIdle.png
 -1
--1
+0 5
 -1

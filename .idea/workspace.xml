@@ -4,50 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Content added, time to fix bugs">
-      <change afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027185187.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027229685.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027324822.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027342583.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027358816.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682027454482.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098138934.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098222997.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098391143.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098461312.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098525786.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098753153.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098810729.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682098832927.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101580245.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101593859.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101636655.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101671315.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101693348.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682101971290.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102056591.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102220122.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102230105.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102588792.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102685743.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102702784.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102715298.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682102737658.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103104621.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103233880.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103254257.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103342374.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103757004.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103774397.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682103825763.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="More fixes that produce more bugs">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MainGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/youWon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/levels/arena.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682104174118.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682104192690.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682104808858.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682104824688.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682105035045.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682105432463.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682133619099.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682133935289.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682133997914.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682134018425.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682134022032.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682134045043.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682134282167.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682134322758.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138743093.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138763533.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138776811.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138791358.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138806957.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682138820912.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139059736.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139072073.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139315017.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139411227.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139419221.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139462366.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139559120.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139580995.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139591782.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682139603827.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682140510356.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682140910106.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682141256774.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682141409089.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682141530988.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovementPattern.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/levels/1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TemporaryArt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TemporaryArt.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/levels/2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +67,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="tmp" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -87,20 +96,21 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Gerania" />
-      <option name="PROGRAM_PARAMETERS" value="2" />
+      <option name="PROGRAM_PARAMETERS" value="devTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

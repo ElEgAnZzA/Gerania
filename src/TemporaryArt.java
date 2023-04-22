@@ -1,5 +1,3 @@
-import org.w3c.dom.xpath.XPathResult;
-
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.io.File;
@@ -91,10 +89,10 @@ public class TemporaryArt {
         this.loadImage(imageFile);
     }
 
-    public void update (Main main, long currentTime){
+    public void update (MainGame mainGame, long currentTime){
         double timePassedCoeff = (currentTime-birthTime)/lifeTime;
         if (timePassedCoeff>=1)
-            this.kill(main);
+            this.kill(mainGame);
         else if (shrinking){
             this.setWidth((int)(origWidth*(1-timePassedCoeff)));
             this.setHeight((int)(origHeight*(1-timePassedCoeff)));
@@ -104,31 +102,28 @@ public class TemporaryArt {
 
     }
 
-    public void kill(Main main){
+    public void kill(MainGame mainGame){
         System.out.println("Killing "+this+" index: "+this.index);
-        for (int i =this.index; i<main.kTemporaryArts-1;i++){
-            main.temporaryArts[i] = main.temporaryArts[i+1];
-            main.temporaryArts[i].setIndex(main.temporaryArts[i].getIndex()-1);
+        for (int i = this.index; i< mainGame.kTemporaryArts-1; i++){
+            mainGame.temporaryArts[i] = mainGame.temporaryArts[i+1];
+            mainGame.temporaryArts[i].setIndex(mainGame.temporaryArts[i].getIndex()-1);
         }
-        if (main.kTemporaryArts<100)
-            main.temporaryArts[main.kTemporaryArts-1] = main.temporaryArts[main.kTemporaryArts];
+        if (mainGame.kTemporaryArts<100)
+            mainGame.temporaryArts[mainGame.kTemporaryArts-1] = mainGame.temporaryArts[mainGame.kTemporaryArts];
         else
-            main.temporaryArts[main.kTemporaryArts-1]=null;
-        main.kTemporaryArts--;
+            mainGame.temporaryArts[mainGame.kTemporaryArts-1]=null;
+        mainGame.kTemporaryArts--;
     }
     @Override
     public String toString(){
         return "TemporaryArt at ("+this.getX()+", "+this.getY()+"); width: "+this.getWidth()+"; height: "+this.getHeight()+" "+image;
     }
-    public static TemporaryArt stringToTemporaryArt(Main main, String string, long time){
+    public static TemporaryArt stringToTemporaryArt(MainGame mainGame, String string, long time){
         String[] parameters = string.split(" ");
         boolean shrinking;
-        if (parameters[4] == "0")
-            shrinking = false;
-        else
-            shrinking = true;
+        shrinking = parameters[4] != "0";
         return new TemporaryArt(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), Integer.valueOf(parameters[2]), Integer.valueOf(parameters[3]),
-                shrinking, Integer.valueOf(parameters[5]), time, main.kTemporaryArts, new File(parameters[6]));
+                shrinking, Integer.valueOf(parameters[5]), time, mainGame.kTemporaryArts, new File(parameters[6]));
         //double x, double y, int width, int height, boolean shrinking, int lifeTime, long birthTime, int index, File imageFile
     }
 }

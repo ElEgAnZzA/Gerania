@@ -2,7 +2,7 @@ public class Interaction {
     public Interaction(){
 
     }
-    public void interact(Main main, Creature caster, int target){
+    public void interact(MainGame mainGame, Creature caster, int target){
 
     }
     public static Interaction interactionFromString(String str){
@@ -61,15 +61,15 @@ public class Interaction {
 }
 
 class InteractionHurt extends Interaction{
-    private int damage;
+    private final int damage;
     public InteractionHurt(int damage){
         super();
         this.damage=damage;
     }
 
     @Override
-    public void interact(Main main, Creature caster, int target){
-        main.creatures[target].hurt(main, damage);
+    public void interact(MainGame mainGame, Creature caster, int target){
+        mainGame.creatures[target].hurt(mainGame, damage);
     }
 
     @Override
@@ -78,22 +78,22 @@ class InteractionHurt extends Interaction{
     }
 }
 class InteractionBoom extends Interaction{
-    private int damage;
-    private int radius;
+    private final int damage;
+    private final int radius;
     public InteractionBoom(int damage, int radius){
         super();
         this.damage=damage;
         this.radius = radius;
     }
-    public void interact(Main main, Creature caster, int target){
+    public void interact(MainGame mainGame, Creature caster, int target){
         Point casterCenter = new Point(caster.getX()+caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
-        Creature explosion = new Creature(casterCenter.getX()-radius, casterCenter.getY()-radius, 2*radius, 2*radius, 0, 0, main.kCreatures);
+        Creature explosion = new Creature(casterCenter.getX()-radius, casterCenter.getY()-radius, 2*radius, 2*radius, 0, 0, mainGame.kCreatures);
         explosion.setDiesOnCollision(true);
         //explosion.loadSprite();
         explosion.setMaxHealth(-1);
         explosion.setCreatureCollisionInteraction(new InteractionHurt(damage));
-        main.creatures[main.kCreatures] = explosion;
-        main.kCreatures++;
+        mainGame.creatures[mainGame.kCreatures] = explosion;
+        mainGame.kCreatures++;
     }
     @Override
     public String toString(){
@@ -101,24 +101,24 @@ class InteractionBoom extends Interaction{
     }
 }
 class InteractionLightning extends Interaction{
-    private int damage;
-    private int width;
-    private int height;
+    private final int damage;
+    private final int width;
+    private final int height;
     public InteractionLightning(int damage, int width, int height){
         super();
         this.damage=damage;
         this.width = width;
         this.height = height;
     }
-    public void interact(Main main, Creature caster, int target){
+    public void interact(MainGame mainGame, Creature caster, int target){
         Point casterCenter = new Point(caster.getX()+caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
-        Creature explosion = new Creature(casterCenter.getX()-width/2, casterCenter.getY()-height/2, width, height, 0, 0, main.kCreatures);
+        Creature explosion = new Creature(casterCenter.getX()-width/2, casterCenter.getY()-height/2, width, height, 0, 0, mainGame.kCreatures);
         explosion.setDiesOnCollision(true);
         //explosion.loadSprite();
         explosion.setMaxHealth(-1);
         explosion.setCreatureCollisionInteraction(new InteractionHurt(damage));
-        main.creatures[main.kCreatures] = explosion;
-        main.kCreatures++;
+        mainGame.creatures[mainGame.kCreatures] = explosion;
+        mainGame.kCreatures++;
     }
     @Override
     public String toString(){
@@ -126,8 +126,8 @@ class InteractionLightning extends Interaction{
     }
 }
 class InteractionIceSpikes extends Interaction{
-    private int damage;
-    private int count;
+    private final int damage;
+    private final int count;
     private static final int ICE_SPIKE_WIDTH = 24;
     private static final int ICE_SPIKE_HEIGHT = 32;
     public InteractionIceSpikes(int damage, int count){
@@ -135,7 +135,7 @@ class InteractionIceSpikes extends Interaction{
         this.damage=damage;
         this.count = count;
     }
-    public void interact(Main main, Creature caster, int target){
+    public void interact(MainGame mainGame, Creature caster, int target){
         Point casterCenter = new Point(caster.getX()+caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
         if(caster.hasHorizontalCollision()){
             //Возможно, здесь так ничего и не будет. Возможно, я придумаю, как реализовать вертикальное расположение шипов
@@ -143,10 +143,10 @@ class InteractionIceSpikes extends Interaction{
         else {
             int startingX = (int) (casterCenter.getX() - (count / 2.0) * ICE_SPIKE_WIDTH);
             for (int i = 0; i < count; i++) {
-                Creature iceSpike = new Creature(startingX + i * ICE_SPIKE_WIDTH, casterCenter.getY(), ICE_SPIKE_WIDTH, ICE_SPIKE_HEIGHT, 0, 0, main.kCreatures);
-                iceSpike.loadCreature("iceSpike.txt", main);
-                main.creatures[main.kCreatures] = iceSpike;
-                main.kCreatures++;
+                Creature iceSpike = new Creature(startingX + i * ICE_SPIKE_WIDTH, casterCenter.getY(), ICE_SPIKE_WIDTH, ICE_SPIKE_HEIGHT, 0, 0, mainGame.kCreatures);
+                iceSpike.loadCreature("iceSpike.txt", mainGame);
+                mainGame.creatures[mainGame.kCreatures] = iceSpike;
+                mainGame.kCreatures++;
             }
         }
     }

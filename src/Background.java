@@ -29,8 +29,8 @@ public class Background {
         return height;
     }
 
-    public void move(Main main){
-        double coefficient = main.cameraX/(main.maxX-main.SCREEN_WIDTH);
-        this.x = main.cameraX-(this.width-main.SCREEN_WIDTH)*coefficient;
+    public void move(MainGame mainGame){
+        double coefficient = mainGame.cameraX/(mainGame.maxX- MainGame.SCREEN_WIDTH);
+        this.x = mainGame.cameraX-(this.width- MainGame.SCREEN_WIDTH)*coefficient;
     }
 }

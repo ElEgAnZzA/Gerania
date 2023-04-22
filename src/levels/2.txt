@@ -9,7 +9,7 @@
 3400 0 3000 200
 200 200 playerCharacter.txt
 18
-300 100 skeleton.txt
+350 100 skeleton.txt
 550 100 goblin.txt
 600 100 skeleton.txt
 1350 100 goblin.txt

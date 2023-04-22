@@ -249,10 +249,10 @@ public class Creature {
 
 
     //Взаимодействие с Creature:
-    public void update(Main main){ //Обновляет состояние Creature:
+    public void update(MainGame mainGame){ //Обновляет состояние Creature:
         //[ПЕРЕПИСАТЬ ПОЯСНЯЮЩИЙ КОММЕНТАРИЙ]
-        timePassedModifier = (main.endTime - main.beginningTime)/50.0;
-        this.detectCreatureCollisions(main);
+        timePassedModifier = (mainGame.endTime - mainGame.beginningTime)/50.0;
+        this.detectCreatureCollisions(mainGame);
 //        hasHorizontalCollision = false;
 //        hasVerticalCollision = false;
 
@@ -261,7 +261,7 @@ public class Creature {
 
         if(!isControlled&&movementPattern!=null){
 //            System.out.println(this.index+" | "+ main.kCreatures);
-            this.move(movementPattern.getNextAction(main, this));
+            this.move(movementPattern.getNextAction(mainGame, this));
         }
         if(mass!=0) {
             for (int i = 0; i < kForces; i++) {
@@ -270,38 +270,38 @@ public class Creature {
                     forces[i].decreaseTime();
                 else if (forces[i].getTime() > -1)
                     forcesPop(i);
-                if (velocity.getR() >= Main.CREATURE_MAX_VELOCITY)
-                    velocity.setR(Main.CREATURE_MAX_VELOCITY);
+                if (velocity.getR() >= MainGame.CREATURE_MAX_VELOCITY)
+                    velocity.setR(MainGame.CREATURE_MAX_VELOCITY);
 
             }
         }
-        this.velocity = detectGameObjectCollisions(main);
+        this.velocity = detectGameObjectCollisions(mainGame);
 
         if (hasHorizontalCollision||hasVerticalCollision) {
             if(gameObjectCollisionInteraction!=null)
-                gameObjectCollisionInteraction.interact(main, this, -1);
+                gameObjectCollisionInteraction.interact(mainGame, this, -1);
             if(diesOnCollision)
-                this.kill(main);
+                this.kill(mainGame);
         }
         this.setX(this.getX()+ this.getVelocity().getX()*timePassedModifier);
         this.setY(this.getY()+ this.getVelocity().getY()*timePassedModifier);
 
-        if(this.y > main.SCREEN_HEIGHT){
-            if(this.isControlled==true){
-                this.y -= main.SCREEN_HEIGHT;
-                this.hurt(main, 10);
+        if(this.y > MainGame.SCREEN_HEIGHT){
+            if(this.isControlled){
+                this.y -= MainGame.SCREEN_HEIGHT;
+                this.hurt(mainGame, 10);
             }
             else{
-                this.kill(main);
+                this.kill(mainGame);
             }
         }
-        if(this.y<-main.SCREEN_HEIGHT)
-            this.kill(main);
+        if(this.y<-MainGame.SCREEN_HEIGHT)
+            this.kill(mainGame);
 
-        if(flip==false&&this.getX()<main.creatures[main.playerControlledCreatureId].getX()){
+        if(!flip &&this.getX()< mainGame.creatures[mainGame.playerControlledCreatureId].getX()){
             flip = true;
         }
-        if(flip==true&&this.getX()>main.creatures[main.playerControlledCreatureId].getX()){
+        if(flip &&this.getX()> mainGame.creatures[mainGame.playerControlledCreatureId].getX()){
             flip = false;
         }
 
@@ -353,28 +353,26 @@ public class Creature {
                 res = 3;
             }
         }
-        if(this.index == 0)
-            System.out.println (this+" is colliding with GameObject "+gameObject+"; collision type "+res);
         return res;
     }
 
-    public Vector detectGameObjectCollisions(Main main){
+    public Vector detectGameObjectCollisions(MainGame mainGame){
         GameObject[] collisions = new GameObject[100]; //Список всех номеров столкновений, если их больше 100 - есть проблемы куда больше, чем нехватка места в списке
         short kCollisions = 0;
         this.setX(this.getX()+this.velocity.getX()*timePassedModifier);
         this.setY(this.getY()+this.velocity.getY()*timePassedModifier);
         this.hasVerticalCollision = false;
         this.hasHorizontalCollision = false;
-        for (short i = 0; i<main.kGameObjects&&!isDead; i++){
-            int res = checkGameObjectCollision(main.gameObjects[i]);
+        for (short i = 0; i< mainGame.kGameObjects&&!isDead; i++){
+            int res = checkGameObjectCollision(mainGame.gameObjects[i]);
             if (res == 1) {//Горизонтальное столкновение
                 hasHorizontalCollision = true;
-                collisions[kCollisions] = main.gameObjects[i];
+                collisions[kCollisions] = mainGame.gameObjects[i];
                 kCollisions++;
             }
             else if (res>1) {//Вертикальное (2) или идеально диагональное (3) столкновения
                 hasVerticalCollision = true;
-                collisions[kCollisions] = main.gameObjects[i];
+                collisions[kCollisions] = mainGame.gameObjects[i];
                 kCollisions++;
             }
         }
@@ -383,7 +381,7 @@ public class Creature {
         Vector finalVelocity = new Vector(this.getVelocity().getX()*timePassedModifier, this.getVelocity().getY()*timePassedModifier);
         Vector resultingVelocity;
         for (int i = 0; i<kCollisions; i++){
-            resultingVelocity = resolveGameObjectCollisions(main, collisions[i]);
+            resultingVelocity = resolveGameObjectCollisions(mainGame, collisions[i]);
             if(Math.abs(resultingVelocity.getX())< Math.abs(finalVelocity.getX()))
                 finalVelocity.setX(resultingVelocity.getX());
             if(Math.abs(resultingVelocity.getY())< Math.abs(finalVelocity.getY()))
@@ -394,7 +392,7 @@ public class Creature {
         else
             return finalVelocity;
     }
-    private Vector resolveGameObjectCollisions(Main main, GameObject gameObject){
+    private Vector resolveGameObjectCollisions(MainGame mainGame, GameObject gameObject){
         double beginningX = this.getX();
         double beginningY = this.getY();
         Vector partialVelocity = this.velocity.x(timePassedModifier).x(0.1);
@@ -430,30 +428,30 @@ public class Creature {
     public void move(Vector direction){
         this.velocity.addToThis(direction);
     }
-    public void detectCreatureCollisions(Main main){
-        for (int i = 0; i<main.kCreatures&&!isDead; i++){
-            if (!(main.creatures[i]==this)){
-                double selectedX = main.creatures[i].getX();
-                double selectedY = main.creatures[i].getY();
-                int selectedWidth = main.creatures[i].getWidth();
-                int selectedHeight = main.creatures[i].getHeight();
+    public void detectCreatureCollisions(MainGame mainGame){
+        for (int i = 0; i< mainGame.kCreatures&&!isDead; i++){
+            if (!(mainGame.creatures[i]==this)){
+                double selectedX = mainGame.creatures[i].getX();
+                double selectedY = mainGame.creatures[i].getY();
+                int selectedWidth = mainGame.creatures[i].getWidth();
+                int selectedHeight = mainGame.creatures[i].getHeight();
                 if ((selectedX + selectedWidth > this.x) && //Условие первое: левая часть существа левее, чем правая часть данного существа
                         (selectedX < this.x + this.width) && //Условие второе: правая часть существа правее, чем левая часть данного существа
                         (selectedY + selectedHeight > this.y) && //Условие третье: верхняя часть существа выше, чем нижняя часть данного существа
                         (selectedY < this.y + this.height)) { //Условие четвертое: нижняя часть существа ниже, чем верхняя часть данного существа
-                    resolveCreatureCollision(main, i);
+                    resolveCreatureCollision(mainGame, i);
                 }
             }
         }
     }
-    private void resolveCreatureCollision(Main main, int target){
-        if(main.endTime- lastInteractionTime >500) {
+    private void resolveCreatureCollision(MainGame mainGame, int target){
+        if(mainGame.endTime- lastInteractionTime >500) {
             if (this.creatureCollisionInteraction != null) {
-                this.creatureCollisionInteraction.interact(main, this, target);
-                lastInteractionTime = main.endTime;
+                this.creatureCollisionInteraction.interact(mainGame, this, target);
+                lastInteractionTime = mainGame.endTime;
             }
             if (this.isDiesOnCollision())
-                this.kill(main);
+                this.kill(mainGame);
         }
     }
 
@@ -461,33 +459,33 @@ public class Creature {
     public String toString(){
         return "Creature at:"+this.getX()+" "+this.getY()+"; Width:"+this.getWidth()+"; Height:"+this.getHeight();
     }
-    public void hurt(Main main, int damage){
+    public void hurt(MainGame mainGame, int damage){
         if (this.getMaxHealth()>0){
             if(damage>=this.getHealth()){
-                this.kill(main);
+                this.kill(mainGame);
             }
             else{
                 this.setHealth(this.getHealth()-damage);
             }
         }
     }
-    public void kill(Main main){
+    public void kill(MainGame mainGame){
         System.out.println("Killing "+this+" index: "+this.index);
         this.isDead=true;
-        for (int i =this.index; i<main.kCreatures-1;i++){
-            main.creatures[i] = main.creatures[i+1];
-            main.creatures[i].setIndex(main.creatures[i].getIndex()-1);
+        for (int i = this.index; i< mainGame.kCreatures-1; i++){
+            mainGame.creatures[i] = mainGame.creatures[i+1];
+            mainGame.creatures[i].setIndex(mainGame.creatures[i].getIndex()-1);
         }
-        if (main.kCreatures<1000)
-            main.creatures[main.kCreatures-1] = main.creatures[main.kCreatures];
+        if (mainGame.kCreatures<1000)
+            mainGame.creatures[mainGame.kCreatures-1] = mainGame.creatures[mainGame.kCreatures];
         else
-            main.creatures[main.kCreatures-1]=null;
-        main.kCreatures--;
+            mainGame.creatures[mainGame.kCreatures-1]=null;
+        mainGame.kCreatures--;
         if(isControlled){
-            main.panel.gameOver();
+            mainGame.panel.gameOver();
         }
     }
-    public void loadCreature(String name, Main main){
+    public void loadCreature(String name, MainGame mainGame){
         File file = new File("./src/creatures/"+name);
         try{
             Scanner scanner = new Scanner(file);
@@ -503,25 +501,25 @@ public class Creature {
             this.setIsControlled(scanner.nextInt()!=0);
             double gravityCoefficient = scanner.nextInt();
             if (gravityCoefficient!=0)
-                this.applyForce(new Force(main.GRAVITY.getX()*gravityCoefficient*this.mass, main.GRAVITY.getY()*gravityCoefficient*this.mass, -1));
+                this.applyForce(new Force(MainGame.GRAVITY.getX()*gravityCoefficient*this.mass, MainGame.GRAVITY.getY()*gravityCoefficient*this.mass, -1));
             scanner.nextLine();
             this.loadSprite(scanner.nextLine());
-            this.setMovementPattern(MovementPattern.movementPatternFromString(main, scanner.nextLine()));
-            main.log.println("loaded MovementPattern "+getMovementPattern());
+            this.setMovementPattern(MovementPattern.movementPatternFromString(mainGame, scanner.nextLine()));
+            mainGame.log.println("loaded MovementPattern "+getMovementPattern());
             this.setCreatureCollisionInteraction(Interaction.interactionFromString(scanner.nextLine()));
-            main.log.println("loaded Interaction (for collision with Creatures) "+getCreatureCollisionInteraction());
+            mainGame.log.println("loaded Interaction (for collision with Creatures) "+getCreatureCollisionInteraction());
             this.setGameObjectCollisionInteraction(Interaction.interactionFromString(scanner.nextLine()));
-            main.log.println("loaded Interaction (for collision with GameObjects) "+getGameObjectCollisionInteraction());
+            mainGame.log.println("loaded Interaction (for collision with GameObjects) "+getGameObjectCollisionInteraction());
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
         }
     }
-    public static Creature stringToCreature(Main main, String string, int index){
+    public static Creature stringToCreature(MainGame mainGame, String string, int index){
         String[] parameters = string.split(" ");
-        Creature res = new Creature(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), 0, 0, 0, main.endTime, index);
-        main.log.println("loading creature "+res);
-        res.loadCreature(parameters[2], main);
+        Creature res = new Creature(Integer.valueOf(parameters[0]), Integer.valueOf(parameters[1]), 0, 0, 0, mainGame.endTime, index);
+        mainGame.log.println("loading creature "+res);
+        res.loadCreature(parameters[2], mainGame);
         return res;
     }
 }

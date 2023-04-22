@@ -20,13 +20,13 @@ public class CreatureBossScholar extends Creature{
         this.setCreatureCollisionInteraction(new InteractionHurt(10));
         this.lastTimeUsedSpell = time;
     }
-    public void jump(Main main){
+    public void jump(MainGame mainGame){
         if (!jumping){
-            Creature player = main.creatures[main.getPlayerControlledCreatureId()];
-            Vector jump = new Vector(0, 10);
+            Creature player = mainGame.creatures[mainGame.getPlayerControlledCreatureId()];
+            Vector jump = new Vector(0, 15);
             this.move(jump);
-            jumpMoveDirection = new Vector((player.getX()-this.getX())/200.0,0);
-            jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX());
+            jumpMoveDirection = new Vector((player.getX()-this.getX())/300.0,0);
+            jumpMoveDirection.setX(jumpMoveDirection.getX() + player.getVelocity().getX()/5);
             System.out.println(jumpMoveDirection+" - ");
             if (jumpMoveDirection.getR()<1)
                 jumpMoveDirection.setR(1);
@@ -39,23 +39,23 @@ public class CreatureBossScholar extends Creature{
             this.move(jumpMoveDirection);
         }
     }
-    public void cast(Main main){
-        if (!hasVerticalCollision()&&(main.endTime-lastTimeUsedSpell)>3000) {
+    public void cast(MainGame mainGame){
+        if (!hasVerticalCollision()&&(mainGame.endTime-lastTimeUsedSpell)>3000) {
             Random random = new Random();
             int spellId = random.nextInt(3);
-            Creature playerCharacter = main.creatures[main.getPlayerControlledCreatureId()];
+            Creature playerCharacter = mainGame.creatures[mainGame.getPlayerControlledCreatureId()];
             Point playerCenter = new Point(playerCharacter.getX() + playerCharacter.getWidth() / 2, playerCharacter.getY() + playerCharacter.getHeight() / 2);
-            Point playerCenterOnScreen = new Point(playerCenter.getX() - main.cameraX, main.SCREEN_HEIGHT - playerCenter.getY() + main.cameraY);
+            Point playerCenterOnScreen = new Point(playerCenter.getX() - mainGame.cameraX, MainGame.SCREEN_HEIGHT - playerCenter.getY() + mainGame.cameraY);
             System.out.println("Boss casting "+ BOSS_SPELLS[spellId]);
-            BOSS_SPELLS[spellId].cast(getIndex(), playerCenterOnScreen, main);
-            lastTimeUsedSpell = main.endTime;
+            BOSS_SPELLS[spellId].cast(getIndex(), playerCenterOnScreen, mainGame);
+            lastTimeUsedSpell = mainGame.endTime;
         }
     }
     @Override
-    public void update(Main main){ //Обновляет состояние Creature:
+    public void update(MainGame mainGame){ //Обновляет состояние Creature:
         //[ПЕРЕПИСАТЬ ПОЯСНЯЮЩИЙ КОММЕНТАРИЙ]
-        timePassedModifier = (main.endTime - main.beginningTime)/20.0;
-        this.detectCreatureCollisions(main);
+        timePassedModifier = (mainGame.endTime - mainGame.beginningTime)/50.0;
+        this.detectCreatureCollisions(mainGame);
 
         if (hasVerticalCollision())
             jumping=false;
@@ -71,49 +71,49 @@ public class CreatureBossScholar extends Creature{
                 forces[i].decreaseTime();
             else if (forces[i].getTime()>-1)
                 forcesPop(i);
-            if (velocity.getR()>=2*Main.CREATURE_MAX_VELOCITY)
-                velocity.setR(2*Main.CREATURE_MAX_VELOCITY);
-            this.velocity = detectGameObjectCollisions(main);
+            if (velocity.getR()>=2* MainGame.CREATURE_MAX_VELOCITY)
+                velocity.setR(2* MainGame.CREATURE_MAX_VELOCITY);
         }
+        this.velocity = detectGameObjectCollisions(mainGame);
 
 
         this.setX(this.getX()+this.velocity.getX());
         this.setY(this.getY()+this.velocity.getY());
 
-        if(this.getY() > main.SCREEN_HEIGHT){
-            this.setY(this.getY() - main.SCREEN_HEIGHT);
-            this.hurt(main, 10);
+        if(this.getY() > MainGame.SCREEN_HEIGHT){
+            this.setY(this.getY() - MainGame.SCREEN_HEIGHT);
+            this.hurt(mainGame, 10);
         }
-        if(this.getY()<-main.SCREEN_HEIGHT)
-            this.kill(main);
+        if(this.getY()<-MainGame.SCREEN_HEIGHT)
+            this.kill(mainGame);
 
-        if(flip==false&&this.getX()<main.creatures[main.playerControlledCreatureId].getX()){
+        if(!flip &&this.getX()< mainGame.creatures[mainGame.playerControlledCreatureId].getX()){
             flip = true;
         }
-        if(flip==true&&this.getX()>main.creatures[main.playerControlledCreatureId].getX()){
+        if(flip &&this.getX()> mainGame.creatures[mainGame.playerControlledCreatureId].getX()){
             flip = false;
         }
 
 
-        this.applyForce(new Force(this.velocity.getX()*(-0.01), 0, 1));
+        this.applyForce(new Force(this.velocity.getX()*(-0.05), 0, 1));
 
-        this.jump(main);
-        this.cast(main);
+        this.jump(mainGame);
+        this.cast(mainGame);
     }
 
     @Override
-    public void kill(Main main){
+    public void kill(MainGame mainGame){
         System.out.println("Killing "+this+" index: "+this.getIndex());
         this.isDead=true;
-        for (int i =this.getIndex(); i<main.kCreatures-1;i++){
-            main.creatures[i] = main.creatures[i+1];
-            main.creatures[i].setIndex(main.creatures[i].getIndex()-1);
+        for (int i = this.getIndex(); i< mainGame.kCreatures-1; i++){
+            mainGame.creatures[i] = mainGame.creatures[i+1];
+            mainGame.creatures[i].setIndex(mainGame.creatures[i].getIndex()-1);
         }
-        if (main.kCreatures<1000)
-            main.creatures[main.kCreatures-1] = main.creatures[main.kCreatures];
+        if (mainGame.kCreatures<1000)
+            mainGame.creatures[mainGame.kCreatures-1] = mainGame.creatures[mainGame.kCreatures];
         else
-            main.creatures[main.kCreatures-1]=null;
-        main.kCreatures--;
-        main.hasBoss = false;
+            mainGame.creatures[mainGame.kCreatures-1]=null;
+        mainGame.kCreatures--;
+        mainGame.hasBoss = false;
     }
 }
