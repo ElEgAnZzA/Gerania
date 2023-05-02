@@ -1,4 +1,4 @@
-public class MovementPattern { //Класс-"пустышка", нужен лишь для соединения различных видов паттернов поведения и возможности их реализовать.
+public class MovementPattern { //Класс-"пустышка", нужен лишь для соединения различных видов правил поведения и возможности их реализовать.
     Vector nextAction = new Vector(0,0);
     Vector prevAction = new Vector(0,0);
     public MovementPattern(){
@@ -10,7 +10,8 @@ public class MovementPattern { //Класс-"пустышка", нужен ли�
     public void setNextAction(Vector nextAction) {
         this.nextAction = nextAction;
     }
-    public static MovementPattern movementPatternFromString(MainGame mainGame, String str){
+    public static MovementPattern movementPatternFromString(MainGame mainGame, String str){ //Получение правила перемещения из строки,
+                                                                                            //используется при загрузке уровня
         String[] stuff = str.split(" ");
         MovementPattern res;
         switch (stuff[0]){
@@ -41,7 +42,7 @@ public class MovementPattern { //Класс-"пустышка", нужен ли�
     }
 }
 
-class MPSequence extends MovementPattern{
+class MPSequence extends MovementPattern{ //Последовательность перемещений
     private final Vector[] actionSequence;
     private int sequenceStep = 0;
 
@@ -62,7 +63,7 @@ class MPSequence extends MovementPattern{
     }
 }
 
-class MPFollow extends MovementPattern{
+class MPFollow extends MovementPattern{ //Следование за каким-либо существом
     public Creature target;
     public int speed;
     public MPFollow(Creature target, int speed){
@@ -73,15 +74,22 @@ class MPFollow extends MovementPattern{
     @Override
     public Vector getNextAction(MainGame mainGame, Creature caster){
         this.prevAction = new Vector(this.nextAction);
-        Point casterPoint = new Point (caster.getX()+ caster.getWidth()/2, caster.getY()+caster.getHeight()/2);
-        Point targetPoint = new Point(target.getX()+ target.getWidth()/2, target.getY()+target.getHeight()/2);
-        Vector targetVector = new Vector(casterPoint, targetPoint);
-        targetVector.setR(speed);
-        this.nextAction = targetVector;
-        return this.nextAction.subtract(this.prevAction);
+        if (target.isDead){
+            caster.kill(mainGame);
+            return new Vector(0, 0);
+        }
+        else {
+            Point casterPoint = new Point(caster.getX() + caster.getWidth() / 2, caster.getY() + caster.getHeight() / 2);
+            Point targetPoint = new Point(target.getX() + target.getWidth() / 2, target.getY() + target.getHeight() / 2);
+            Vector targetVector = new Vector(casterPoint, targetPoint);
+            if (targetVector.getRSquared() > speed * speed)
+                targetVector.setR(speed);
+            this.nextAction = targetVector;
+            return this.nextAction.subtract(this.prevAction);
+        }
     }
 }
-class MPFollowCast extends MPFollow{
+class MPFollowCast extends MPFollow{ //Следование за каким-либо существом + использование против него заклинаний
     private long lastTimeCast;
     private final Spell spell;
     private static final int CAST_COOLDOWN = 700;

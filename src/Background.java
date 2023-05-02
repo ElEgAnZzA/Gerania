@@ -29,8 +29,8 @@ public class Background {
         return height;
     }
 
-    public void move(MainGame mainGame){
-        double coefficient = mainGame.cameraX/(mainGame.maxX- MainGame.SCREEN_WIDTH);
+    public void move(MainGame mainGame){ //Сдвигаем задний фон (меньше, чем передний) для получения parallax-эффекта
+        double coefficient = mainGame.cameraX/(mainGame.maxX);
         this.x = mainGame.cameraX-(this.width- MainGame.SCREEN_WIDTH)*coefficient;
     }
 }

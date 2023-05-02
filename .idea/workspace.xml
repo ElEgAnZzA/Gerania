@@ -1,63 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Gerania:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="1.0">
-      <change afterPath="$PROJECT_DIR$/src/art/explosion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682143406280.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682143910036.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682143972969.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682144036547.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682144482218.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682144534625.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682145061620.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682145148655.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682145322069.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682145368348.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682145430883.txt" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="1.0.1">
+      <change afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/art/paused.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682146083819.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682146506692.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682149250325.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682150389911.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682150466916.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682150487265.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682150746332.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682150845584.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682152236693.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682152516738.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1682152562750.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1683063035026.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/logs/1683063062647.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChooseLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChooseLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChooseLevel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovementPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/creatures/bat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/creatures/bat.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027185187.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027229685.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027324822.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027342583.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027358816.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682027454482.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098138934.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098222997.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098391143.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098461312.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098525786.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098753153.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098810729.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682098832927.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101580245.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101593859.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101636655.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101671315.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101693348.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682101971290.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102056591.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102220122.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102230105.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102588792.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102685743.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102702784.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102715298.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682102737658.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103104621.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103233880.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103254257.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103342374.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103757004.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103774397.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logs/1682103825763.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TemporaryArt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TemporaryArt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,17 +78,20 @@
     <option name="showMembers" value="true" />
     <option name="showVisibilityIcons" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="ChooseLevel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChooseLevel" />
@@ -212,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682142096059</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="1.0.1">
+      <created>1682146523993</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682146523993</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +248,8 @@
     <MESSAGE value="Before I try to remake the level loading system" />
     <MESSAGE value="Content added, time to fix bugs" />
     <MESSAGE value="1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.0" />
+    <MESSAGE value="1.0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.0.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

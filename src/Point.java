@@ -1,6 +1,6 @@
 public class Point {
     //Переменные:
-    private double x;
+    private double x; //Координаты (x, y)
     private double y;
 
 
@@ -43,30 +43,24 @@ public class Point {
     public double distanceToZero(){
         return Math.sqrt(x*x+y*y);
     }
-    public double distanceTo(Point a){
+    public double distanceTo(Point a){ //Расстояние до точки а
         double dx = a.x-x;
         double dy = a.y-y;
         return Math.sqrt(dx*dx + dy*dy);
     }
-    public double distanceToSquared(Point a){
+    public double distanceToSquared(Point a){ //Квадрат расстояния до точки а. Срезает вычислительнозатратную операцию нахождения корня
         double dx = a.x-x;
         double dy = a.y-y;
         return dx*dx + dy*dy;
     }
-    public Point enlarged(double n){
+    public Point enlarged(double n){//Увеличить расстояние от центра в n раз
         return new Point(x*n, y*n);
     }
-    public static Point enlarged (double n, Point a){
+    public static Point enlarged (double n, Point a){//Увеличить расстояние от центра до точки а в n раз
         return new Point(a.x*n, a.y*n);
     }
-    public void enlarge(double n) {
+    public void enlarge(double n) { //Увеличить расстояние от центра в n раз
         x *= n;
         y *= n;
-    }
-    public boolean includeZero(Point a){
-        double x0 = (x+a.x)/2;
-        double y0 = (y+a.y)/2;
-        double r = distanceTo(a)/2;
-        return (new Point(x0, y0).distanceToZero()<=r);
     }
 }

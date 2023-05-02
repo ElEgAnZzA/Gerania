@@ -42,7 +42,7 @@ public class Vector {
     public void setY(double y) { //Установка значения y
         this.y = y;
     }
-    public void setR(double r){
+    public void setR(double r){ //Установка длины вектора
         double rMult = r/this.getR();
         this.setX(this.getX()*rMult);
         this.setY(this.getY()*rMult);
@@ -64,7 +64,7 @@ public class Vector {
         double rSquared = x * x + y * y;
         return rSquared;
     }
-    public double getTheta(){ //Получение угла между вектором и горизонталью
+    public double getTheta(){ //Получение угла между вектором и осью 0X
         double theta = Math.atan2(y, x);
         return theta;
     }
@@ -95,13 +95,13 @@ public class Vector {
         this.y = yNew;
     }
 
-    public Vector subtract(Vector a){
+    public Vector subtract(Vector a){//Вычитание двух векторов
         double xNew = this.getX()-a.getX();
         double yNew = this.getY()-a.getY();
         Vector vectorNew = new Vector(xNew, yNew);
         return vectorNew;
     }
-    public void subtractFromThis(Vector a){
+    public void subtractFromThis(Vector a){//Вычитание двух векторов
         double xNew = this.getX()-a.getX();
         double yNew = this.getY()-a.getY();
         this.x = xNew;
@@ -161,7 +161,7 @@ class Force extends Vector{
 
     public void decreaseTime(){ //Уменьшает время на 1
         this.time--;
-    }
+    } //Не сеттер, просто уменьшает время действия силы на 1
 
 
     @Override

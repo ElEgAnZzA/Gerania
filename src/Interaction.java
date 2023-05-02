@@ -3,19 +3,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Interaction {
+public class Interaction { //Класс - "пустышка", нужен лишь для наличия общего метода interact(mainGame, caster, target) у разных видов взаимодействий
     public Interaction(){
 
     }
     public void interact(MainGame mainGame, Creature caster, int target){
 
     }
-    public static Interaction interactionFromString(String str){
+    public static Interaction interactionFromString(String str){ //Получение взаимодействия из строки, используется при загрузке уровня
         String[] stuff = str.split(" ");
         switch (stuff[0]){
-            case("-1"):
+            case("-1"): //Отсутствует взаимодействие
                 return null;
-            case ("0"):
+            case ("0"): //Нанесение урона при столкновении
                 try {
                     int damage = Integer.valueOf(stuff[1]);
                     InteractionHurt res = new InteractionHurt(damage);
@@ -25,7 +25,7 @@ public class Interaction {
                     e.printStackTrace();
                     return null;
                 }
-            case ("1"):
+            case ("1"): //Взрыв при столкновении
                 try {
                     int damage = Integer.valueOf(stuff[1]);
                     int radius = Integer.valueOf(stuff[2]);
@@ -36,7 +36,7 @@ public class Interaction {
                     e.printStackTrace();
                     return null;
                 }
-            case ("2"):
+            case ("2"): //"Молния" при столкновении
                 try{
                     int damage = Integer.valueOf(stuff[1]);
                     int width = Integer.valueOf(stuff[2]);
@@ -48,7 +48,7 @@ public class Interaction {
                     e.printStackTrace();
                     return null;
                 }
-            case ("3"):
+            case ("3"): //Появление ледяных шипов при столкновении
                 try{
                     int damage = Integer.valueOf(stuff[1]);
                     int count = Integer.valueOf(stuff[2]);
@@ -59,13 +59,13 @@ public class Interaction {
                     e.printStackTrace();
                     return null;
                 }
-            default:
+            default: //Отсутствует взаимодействие
                 return null;
         }
     }
 }
 
-class InteractionHurt extends Interaction{
+class InteractionHurt extends Interaction{ //Нанесение урона при столкновении
     private final int damage;
     public InteractionHurt(int damage){
         super();
@@ -82,7 +82,7 @@ class InteractionHurt extends Interaction{
         return "Interaction: deal "+damage+" damage";
     }
 }
-class InteractionBoom extends Interaction{
+class InteractionBoom extends Interaction{ //Взрыв при столкновении
     private final int damage;
     private final int radius;
     public InteractionBoom(int damage, int radius){
@@ -108,7 +108,7 @@ class InteractionBoom extends Interaction{
         return "Interaction: deal "+damage+" damage in radius of "+radius;
     }
 }
-class InteractionLightning extends Interaction{
+class InteractionLightning extends Interaction{ //"молния" при столкновении
     private final int damage;
     private final int width;
     private final int height;
@@ -137,7 +137,7 @@ class InteractionLightning extends Interaction{
         return "Interaction: deal "+damage+" damage in a "+width+" by "+height+" box";
     }
 }
-class InteractionIceSpikes extends Interaction{
+class InteractionIceSpikes extends Interaction{ //Появление ледяных шипов при столкновении
     private final int damage;
     private final int count;
     private static final int ICE_SPIKE_WIDTH = 24;

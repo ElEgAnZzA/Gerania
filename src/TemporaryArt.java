@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class TemporaryArt {
+    //Характеристики:
     double x;
     double y;
     int width;
@@ -14,8 +15,10 @@ public class TemporaryArt {
 
     Image image;
 
-    int index;
 
+
+    //Прочая информация:
+    int index;
     double origX;
     double origY;
     int origWidth;
@@ -89,11 +92,12 @@ public class TemporaryArt {
         this.loadImage(imageFile);
     }
 
-    public void update (MainGame mainGame, long currentTime){
-        double timePassedCoeff = (currentTime-birthTime)/lifeTime;
-        if (timePassedCoeff>=1)
-            this.kill(mainGame);
-        else if (shrinking){
+    public void update (MainGame mainGame, long currentTime){ //Обновляем временное изображение
+        double timePassedCoeff = (currentTime-birthTime)/lifeTime; //Коэффициент прошедшего времени
+        if (timePassedCoeff>=1)//Если прошло больше, чем изображение существует - удаляем
+            this.delete(mainGame);
+
+        else if (shrinking){//Если нужно, сжимаем
             this.setWidth((int)(origWidth*(1-timePassedCoeff)));
             this.setHeight((int)(origHeight*(1-timePassedCoeff)));
             this.setX(this.origX+(origWidth-this.getWidth())/2);
@@ -102,12 +106,13 @@ public class TemporaryArt {
 
     }
 
-    public void kill(MainGame mainGame){
-        System.out.println("Killing "+this+" index: "+this.index);
-        for (int i = this.index; i< mainGame.kTemporaryArts-1; i++){
+    public void delete(MainGame mainGame){
+
+        for (int i = this.index; i< mainGame.kTemporaryArts-1; i++){ //Вырезаем из списка в mainGame
             mainGame.temporaryArts[i] = mainGame.temporaryArts[i+1];
             mainGame.temporaryArts[i].setIndex(mainGame.temporaryArts[i].getIndex()-1);
         }
+        //Сдвигаем список влево:
         if (mainGame.kTemporaryArts<100)
             mainGame.temporaryArts[mainGame.kTemporaryArts-1] = mainGame.temporaryArts[mainGame.kTemporaryArts];
         else
@@ -118,7 +123,7 @@ public class TemporaryArt {
     public String toString(){
         return "TemporaryArt at ("+this.getX()+", "+this.getY()+"); width: "+this.getWidth()+"; height: "+this.getHeight()+" "+image;
     }
-    public static TemporaryArt stringToTemporaryArt(MainGame mainGame, String string, long time){
+    public static TemporaryArt stringToTemporaryArt(MainGame mainGame, String string, long time){ //Получение временного изображения из строки
         String[] parameters = string.split(" ");
         boolean shrinking;
         shrinking = parameters[4] != "0";
