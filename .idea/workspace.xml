@@ -9,34 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="1.0.1">
-      <change afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/art/paused.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682146083819.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682146506692.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682149250325.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682150389911.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682150466916.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682150487265.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682150746332.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682150845584.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682152236693.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682152516738.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1682152562750.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1683063035026.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/1683063062647.txt" afterDir="false" />
+    <list default="true" id="85ea48ba-fe1e-4c1f-837d-9a29b7792ec5" name="Changes" comment="Content added, time to fix bugs">
+      <change afterPath="$PROJECT_DIR$/src/logs/1683100324596.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Background.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Background.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src.zip" beforeDir="false" afterPath="$PROJECT_DIR$/src.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChooseLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChooseLevel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Creature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Creature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CreatureBossScholar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CreatureBossScholar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MovementPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TemporaryArt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TemporaryArt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/levels/devTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/levels/devTest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,15 +76,26 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.debug">
     <configuration name="ChooseLevel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChooseLevel" />
       <module name="Gerania" />
-      <option name="PROGRAM_PARAMETERS" value="devTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="debug" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ChooseLevel" />
+      <module name="Gerania" />
+      <option name="PROGRAM_PARAMETERS" value="debug" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.debug" />
+      <item itemvalue="Application.ChooseLevel" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChooseLevel" />
@@ -116,6 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1676576877498</updated>
       <workItem from="1681885903701" duration="4581000" />
+      <workItem from="1683700412356" duration="5108000" />
     </task>
     <task id="LOCAL-00001" summary="Fully made class Vector ig (probably not)">
       <created>1676580372660</created>

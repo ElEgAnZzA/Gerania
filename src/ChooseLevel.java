@@ -64,6 +64,13 @@ public class ChooseLevel extends JFrame {
         add(arena);
     }
     public static void main(String[] args) {
-        ChooseLevel chooseLevel = new ChooseLevel("Gerania: choose the level");
+        if (args!=null&&args.length!=0&&!args[0].equals("debug")) {
+            ChooseLevel chooseLevel = new ChooseLevel("Gerania: choose the level");
+        }
+        else {
+            String[] arguments = new String[1];
+            arguments[0] = "devTest";
+            MainGame.main(arguments);
+        }
     }
 }

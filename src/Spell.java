@@ -5,6 +5,7 @@ public class Spell {
     }
     public void cast(int casterIndex, Point click, MainGame mainGame){
         //Колдует заклинание и возвращает 0 - не нужно менять ни одну из переменных, 1 - нужно увеличить kGameObjects, 2 - нужно увеличить kCreatures
+
         //Координаты центра существа, использовавшего заклинание
         double casterCenterX = mainGame.creatures[casterIndex].getX()+ mainGame.creatures[casterIndex].getWidth()/2;
         double casterCenterY = mainGame.creatures[casterIndex].getY()+ mainGame.creatures[casterIndex].getHeight()/2;

@@ -92,7 +92,7 @@ class MPFollow extends MovementPattern{ //Следование за каким-�
 class MPFollowCast extends MPFollow{ //Следование за каким-либо существом + использование против него заклинаний
     private long lastTimeCast;
     private final Spell spell;
-    private static final int CAST_COOLDOWN = 700;
+    private static final int CAST_COOLDOWN = 1000;
     public MPFollowCast(Creature target, int speed, int spellId, long time){
         super(target, speed);
         this.spell = new Spell(spellId);
@@ -108,7 +108,7 @@ class MPFollowCast extends MPFollow{ //Следование за каким-ли
         this.nextAction = targetVector;
         if(mainGame.endTime-lastTimeCast>=CAST_COOLDOWN) {
             System.out.println(spell);
-            Point imaginaryClick = new Point(caster.getX() - mainGame.cameraX, MainGame.SCREEN_HEIGHT - caster.getY() + mainGame.cameraY);
+            Point imaginaryClick = new Point(target.getX() - mainGame.cameraX, MainGame.SCREEN_HEIGHT - targetPoint.getY() + mainGame.cameraY);
             spell.cast(caster.getIndex(), imaginaryClick, mainGame);
             lastTimeCast = mainGame.endTime;
         }

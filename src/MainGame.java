@@ -1,6 +1,4 @@
-//TODO: 1. Изменить систему координат: а. изменить как рисуется, б. изменить, как считается столкновение, в. изменить гравитацию
-//TODO: 2. Front-end design
-//TODO: 3. Level save
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +11,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class MainGame extends JFrame{
-    //Все, что касается окна
+    //Все, что касается окна^
     private static final Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
     public static final int SCREEN_WIDTH = (int)dim.getWidth();
     public static final int SCREEN_HEIGHT = (int)dim.getHeight();
@@ -98,7 +96,7 @@ public class MainGame extends JFrame{
         panel.setRequestFocusEnabled(true);
         panel.requestFocus();
     }
-    public void loadSpells(){ //Загружаем все заклинания игрока
+    public void loadSpells(){ //Выдаем игроку все заклинания
         spells = new Spell[10];
         spells[0] = new Spell(1);
         spells[1] = new Spell(2);
@@ -113,38 +111,47 @@ public class MainGame extends JFrame{
     public void setSelectedSpell(int selectedSpell){
         this.selectedSpell=selectedSpell;
     }
-    public void clearGameObjects(){
+    public void clearGameObjects(){ //Очищаем массив Игровых Объектов
         for (int i = 0; i<kGameObjects; i++){
             gameObjects[i]=null;
         }
         kGameObjects = 0;
     }
-    public void clearCreatures(){
+    public void clearCreatures(){ //Очищаем массив Существ
         for (int i = 0; i<kCreatures; i++){
             creatures[i]=null;
         }
         kCreatures = 0;
     }
-    public void clearTemporaryArts(){
+    public void clearTemporaryArts(){ //Очищаем массив Временных Изображений
         for (int i = 0; i<kTemporaryArts; i++){
             temporaryArts[i]=null;
         }
         kTemporaryArts = 0;
     }
-    public void loadLevel(String fileName){ //Загружаем уровень и ведем лог
+    public void loadLevel(String fileName){ //Загружаем уровень и ведем лог загрузки
         log.println("loading level "+fileName+":");
+        //При открытии файлов ловим ошибки:
         try{
+            //Очищаем игровые массивы:
             clearGameObjects();
             log.println("GameObjects cleared");
             clearCreatures();
             log.println("Creatures cleared");
             clearTemporaryArts();
             log.println("TemporaryArts cleared");
+
+            //Открываем файл уровня:
             File levelFile = new File("./src/levels/"+fileName);
             Scanner levelRead = new Scanner(levelFile);
+
+            //Читаем его:
+            //1. Читаем число игровых объектов
             kGameObjects = (short)levelRead.nextInt();
             levelRead.nextLine();
-            maxX = 0;
+
+            //2. Читаем сами игровые объекты (заодно находим координаты победного конца уровня):
+            maxX = 0; //Дойдя до maxX (и убив босса, если тот имеется), игрок пройдет уровень
             for (int i = 0; i<kGameObjects; i++){
                 gameObjects[i] = GameObject.stringToGameObject(levelRead.nextLine());
                 log.println("GameObject "+gameObjects[i]+" loaded");
@@ -152,15 +159,19 @@ public class MainGame extends JFrame{
                     maxX = gameObjects[i].getX()+gameObjects[i].getWidth();
             }
 
+            //3. Загружаем персонажа игрока:
             creatures[0] = Creature.stringToCreature(this, levelRead.nextLine(), 0);
             log.println("Player character "+creatures[0]+" loaded");
 
+            //4. Загружаем остальных Существ:
             kCreatures = (short)(levelRead.nextInt()+1);
             levelRead.nextLine();
             for (int i = 1; i<kCreatures; i++){
                 creatures[i] = Creature.stringToCreature(this, levelRead.nextLine(), i);
                 log.println("Creature "+creatures[i]+" loaded");
             }
+
+            //5. Загружаем босса (если есть):
             int bossId = levelRead.nextInt();
             if (bossId == 1) {
                 levelRead.nextLine();
@@ -172,6 +183,7 @@ public class MainGame extends JFrame{
                 hasBoss = true;
             }
 
+            //Завершаем загрузку:
             levelRead.close();
             log.println("Level "+fileName+" loaded");
         }
@@ -208,60 +220,12 @@ public class MainGame extends JFrame{
                 }
             }
 
-            mainGame.background.move(mainGame); //Обновление и прорисовка заднего фона:
-            g.drawImage(mainGame.background.getImage(), (int)(mainGame.background.getX()-cameraX), SCREEN_HEIGHT- mainGame.background.getHeight(), panel);
-
-            g.setColor(Color.BLACK); //Прорисовка игровых объектов в зоне видимости игрока:
-            for (int i=0; i<kGameObjects; i++) {
-                if (gameObjects[i].getX() + gameObjects[i].getWidth() > cameraX && gameObjects[i].getX() < cameraX + SCREEN_WIDTH) {
-                    g.fillRect((int) (gameObjects[i].getX() - cameraX), SCREEN_HEIGHT-(int)(gameObjects[i].getY() - cameraY+gameObjects[i].getHeight()), gameObjects[i].getWidth(), gameObjects[i].getHeight());
-                }
-            }
-            for (int i = 0; i< kCreatures; i++){ //Прорисовка и обновление существ в зоне видимости игрока:
-                if(creatures[i].getX()+creatures[i].getWidth()>cameraX&&creatures[i].getX()<cameraX+SCREEN_WIDTH) {
-                    if(!creatures[i].flip)
-                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), creatures[i].getWidth(), creatures[i].getHeight(), panel);
-                    else
-                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX + creatures[i].getWidth()), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), -creatures[i].getWidth(), creatures[i].getHeight(), panel);
-                    if (isPaused||gameOver)
-                        creatures[i].setLastInteractionTime(endTime);
-                    else
-                        creatures[i].update(mainGame);
-                }
-            }
-
-            for (int i = 0; i<kTemporaryArts; i++){ //Прорисовка временных изображений (например, взрывов) в зоне видимости игрока:
-                if(temporaryArts[i].getX()+temporaryArts[i].getWidth()>cameraX&&temporaryArts[i].getX()<cameraX+SCREEN_WIDTH){
-                    g.drawImage(temporaryArts[i].getImage(), (int) (temporaryArts[i].getX() - cameraX), SCREEN_HEIGHT-(int)(temporaryArts[i].getY() - cameraY+temporaryArts[i].getHeight()), temporaryArts[i].getWidth(), temporaryArts[i].getHeight(), panel);
-                    temporaryArts[i].update(mainGame, endTime);
-                }
-            }
-
-            //Обновление положения камеры при необходимости:
-            if ((creatures[playerControlledCreatureId].getX()-cameraX>3*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
-                cameraX+=7;
-            }
-            if (cameraX>0&&(creatures[playerControlledCreatureId].getX()-cameraX<2*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
-                cameraX-=7;
-            }
-
-            if(playerMana<MAX_PLAYER_MANA&&!(isPaused||gameOver)){ //Восстановление маны у игрока:
-                double addMana = (endTime-beginningTime)/150.0;
-                if (playerMana+addMana>MAX_PLAYER_MANA){
-                    playerMana=MAX_PLAYER_MANA;
-                }
-                else
-                    playerMana+=addMana;
-            }
-
-            //Прорисовка шкал здоровья и маны:
-            g.setColor(Color.RED);
-            g.fillRect(SCREEN_WIDTH-250, 25, 200*creatures[playerControlledCreatureId].getHealth()/creatures[playerControlledCreatureId].getMaxHealth(), 20);
-            g.setColor(Color.CYAN);
-            g.fillRect(SCREEN_WIDTH-250, 50, (int)(200*playerMana/MAX_PLAYER_MANA), 20);
-            g.setColor(Color.BLACK);
-            g.drawRect(SCREEN_WIDTH-250, 25, 200, 20);
-            g.drawRect(SCREEN_WIDTH-250, 50, 200, 20);
+            drawBackground(g);
+            drawGameObjects(g);
+            drawAndUpdateCreatures(g);
+            drawTemporaryArts(g);
+            updateCamera();
+            drawAndUpdateStatusBars(g);
 
             //Проверка прохожения уровня:
             if (creatures[playerControlledCreatureId].getX()>maxX&& !hasBoss)
@@ -276,6 +240,33 @@ public class MainGame extends JFrame{
                     e.printStackTrace();
                 }
 
+            drawVictoryOrDefeatMessage(g);
+            gameCycleWait(50); //Притормаживаем код (чтобы слишком часто не обновлялось)
+
+            repaint();//Запускаем метод с начала
+        }
+
+        private void updateCamera() {
+            //Обновление положения камеры при необходимости:
+            if ((creatures[playerControlledCreatureId].getX()-cameraX>3*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
+                cameraX+=7;
+            }
+            if (cameraX>0&&(creatures[playerControlledCreatureId].getX()-cameraX<2*SCREEN_WIDTH/5)&&!(isPaused||gameOver)){
+                cameraX-=7;
+            }
+        }
+
+        private void gameCycleWait(int wait) {
+            //Притормаживаем код (чтобы слишком часто не обновлялось):
+            try{
+                TimeUnit.MILLISECONDS.sleep(wait);
+            }
+            catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+
+        private void drawVictoryOrDefeatMessage(Graphics g) {
             //Прорисовка поздравления с победой:
             if (happyEnd){
                 g.setColor(Color.WHITE);
@@ -301,18 +292,64 @@ public class MainGame extends JFrame{
                     e.printStackTrace();
                 }
             }
+        }
 
-
-            //Притормаживаем код (чтобы слишком часто не обновлялось):
-            try{
-                TimeUnit.MILLISECONDS.sleep(50);
+        private void drawAndUpdateStatusBars(Graphics g) {
+            if(playerMana<MAX_PLAYER_MANA&&!(isPaused||gameOver)){ //Восстановление маны у игрока:
+                double addMana = (endTime-beginningTime)/150.0;
+                if (playerMana+addMana>MAX_PLAYER_MANA){
+                    playerMana=MAX_PLAYER_MANA;
+                }
+                else
+                    playerMana+=addMana;
             }
-            catch (InterruptedException e){
-                e.printStackTrace();
+
+            //Прорисовка шкал здоровья и маны:
+            g.setColor(Color.RED);
+            g.fillRect(SCREEN_WIDTH-250, 25, 200*creatures[playerControlledCreatureId].getHealth()/creatures[playerControlledCreatureId].getMaxHealth(), 20);
+            g.setColor(Color.CYAN);
+            g.fillRect(SCREEN_WIDTH-250, 50, (int)(200*playerMana/MAX_PLAYER_MANA), 20);
+            g.setColor(Color.BLACK);
+            g.drawRect(SCREEN_WIDTH-250, 25, 200, 20);
+            g.drawRect(SCREEN_WIDTH-250, 50, 200, 20);
+        }
+
+        private void drawTemporaryArts(Graphics g) {
+            for (int i = 0; i<kTemporaryArts; i++){ //Прорисовка временных изображений (например, взрывов) в зоне видимости игрока:
+                if(temporaryArts[i].getX()+temporaryArts[i].getWidth()>cameraX&&temporaryArts[i].getX()<cameraX+SCREEN_WIDTH){
+                    g.drawImage(temporaryArts[i].getImage(), (int) (temporaryArts[i].getX() - cameraX), SCREEN_HEIGHT-(int)(temporaryArts[i].getY() - cameraY+temporaryArts[i].getHeight()), temporaryArts[i].getWidth(), temporaryArts[i].getHeight(), panel);
+                    temporaryArts[i].update(mainGame, endTime);
+                }
             }
+        }
 
+        private void drawAndUpdateCreatures(Graphics g) {
+            for (int i = 0; i< kCreatures; i++){ //Прорисовка и обновление существ в зоне видимости игрока:
+                if(creatures[i].getX()+creatures[i].getWidth()>cameraX&&creatures[i].getX()<cameraX+SCREEN_WIDTH) {
+                    if(!creatures[i].flip)
+                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                    else
+                        g.drawImage(creatures[i].getSprite(), (int) (creatures[i].getX() - cameraX + creatures[i].getWidth()), SCREEN_HEIGHT-(int)(creatures[i].getY() - cameraY+creatures[i].getHeight()), -creatures[i].getWidth(), creatures[i].getHeight(), panel);
+                    if (isPaused||gameOver)
+                        creatures[i].setLastInteractionTime(endTime);
+                    else
+                        creatures[i].update(mainGame);
+                }
+            }
+        }
 
-            repaint();//Запускаем метод с начала
+        private void drawGameObjects(Graphics g) {
+            g.setColor(Color.BLACK); //Прорисовка игровых объектов в зоне видимости игрока:
+            for (int i=0; i<kGameObjects; i++) {
+                if (gameObjects[i].getX() + gameObjects[i].getWidth() > cameraX && gameObjects[i].getX() < cameraX + SCREEN_WIDTH) {
+                    g.fillRect((int) (gameObjects[i].getX() - cameraX), SCREEN_HEIGHT-(int)(gameObjects[i].getY() - cameraY+gameObjects[i].getHeight()), gameObjects[i].getWidth(), gameObjects[i].getHeight());
+                }
+            }
+        }
+
+        private void drawBackground(Graphics g) {
+            mainGame.background.move(mainGame); //Обновление и прорисовка заднего фона:
+            g.drawImage(mainGame.background.getImage(), (int)(mainGame.background.getX()-cameraX), SCREEN_HEIGHT- mainGame.background.getHeight(), panel);
         }
 
         @Override
@@ -363,10 +400,9 @@ public class MainGame extends JFrame{
 
         @Override
         public void mouseReleased(MouseEvent e) {//Обработка нажатий на клавиши мыши
-            if(mainGame.spells[mainGame.selectedSpell].spellCost()<=playerMana&&!(gameOver||happyEnd||isPaused)) {
-                mainGame.spells[mainGame.selectedSpell].cast(playerControlledCreatureId, new Point(e.getX(), e.getY()), mainGame);
-                playerMana-= mainGame.spells[mainGame.selectedSpell].spellCost();
-                System.out.println(playerMana);
+            if(mainGame.spells[mainGame.selectedSpell].spellCost()<=playerMana&&!(gameOver||happyEnd||isPaused)) {//Проверяем, что игра идёт И у игрока достаточно маны
+                mainGame.spells[mainGame.selectedSpell].cast(playerControlledCreatureId, new Point(e.getX(), e.getY()), mainGame); //Кастуем заклинание в точку нажатия
+                playerMana-= mainGame.spells[mainGame.selectedSpell].spellCost(); //Уменьшаем ману игрока на стоимость заклинания
             }
             else
                 System.out.println("not enough mana");
@@ -391,11 +427,11 @@ public class MainGame extends JFrame{
         public void mouseMoved(MouseEvent e) {
 
         } //Метод не используется, нужен, чтобы заявить слушатель
-        public void gameOver(){
+        public void gameOver(){ //Используется при окончании игры
             gameOver = true;
             repaint();
         }
-        public void happyEnd(){
+        public void happyEnd(){ //Используется при победе игрока
             happyEnd = true;
             gameOver();
         }

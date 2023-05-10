@@ -59,8 +59,8 @@ public class CreatureBossScholar extends Creature{
 
         if (hasVerticalCollision())
             jumping=false;
-        this.setHasHorizontalCollision(false);
-        this.setHasVerticalCollision(false);
+        this.setHasHorizontalGameObjectCollision(false);
+        this.setHasVerticalGameObjectCollision(false);
 
         this.setLastX(this.getX());
         this.setLastY(this.getY());
